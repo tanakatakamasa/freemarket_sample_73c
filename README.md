@@ -23,5 +23,4 @@ Things you may want to cover:
 
 * ...
 
-Masatoshi Murakami 
-
+T.T
