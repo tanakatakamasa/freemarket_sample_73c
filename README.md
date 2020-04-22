@@ -24,10 +24,6 @@ Things you may want to cover:
 * ...
 
 
-## ER図
-
-./fikqquRnX7pgF7a1587570723.png
-
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
