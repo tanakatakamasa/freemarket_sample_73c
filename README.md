@@ -26,19 +26,17 @@ Things you may want to cover:
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|password|string|null: false|
-|e-mail_address|string|null: false|
 |nickname|string|null: false|
+|password|string|null: false|
+|e-mail_address|string|null: false, unique: true|
 |last_name|string|null: false|
 |last_name_kana|string|null: false|
 |first_name|string|null: false|
 |first_name_kana|string|null: false|
 |birthday|date|null: false|
-
 ### Association
-belongs_to :addresses #スペルミス直した by Kensho
-belongs_to :cards
+belongs_to :address 
+belongs_to :card
 has_many :products
 
 ## addressesテーブル
@@ -47,21 +45,21 @@ has_many :products
 |postal_code|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
-|town|string|null: false|
-|street_building|string||
+|street|string|null:false|
+|appartment|string||
 |phone_number|string||
-|user_id|reference|null: false, foreign_key: true|
+|user_id|references|foreign_key: true|
 ### Association
 belongs_to :user
 
 ## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null: false|
-|security_code|integer|null: false|
-|expiration_year|integer|null: false|
-|expiration_month|integer|null: false|
-|users_id|reference|null: false, foreign_key: true|
+|card_number|string|null: false|
+|security_code|string|null: false|
+|expiration_year|string|null: false|
+|expiration_month|string|null: false|
+|users_id|references|foreign_key: true|
 ### Association
 belongs_to :user
 
@@ -75,9 +73,9 @@ belongs_to :user
 |delivery_charge|string|null: false|
 |original_shipping_address|string|null: false|
 |duration|string|null: false|
-|users_id|reference|null: false, foreign_key: true|
-|images_id|reference|null: false, foreign_key: true|
-|categories_id|reference|null: false, foreign_key: true|
+|users_id|references|foreign_key: true|
+|images_id|references|foreign_key: true|
+|categories_id|references|foreign_key:true|
 ### Association
 belongs_to :user
 belongs_to :category
@@ -87,7 +85,7 @@ has_many :images
 |Column|Type|Options|
 |------|----|-------|
 |product_image|text|null: false|
-|products_id|reference|null: false, foreign_key: true|
+|products_id|references|foreign_key: true|
 ### Association
 belongs_to :product
 
@@ -95,6 +93,6 @@ belongs_to :product
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|products_id|reference|null: false|
+|products_id|references|foreign_key:true|
 ### Association
 has_many :products
