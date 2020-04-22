@@ -23,6 +23,11 @@ Things you may want to cover:
 
 * ...
 
+
+## ER図
+
+./fikqquRnX7pgF7a1587570723.png
+
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -46,7 +51,7 @@ has_many :products
 |prefecture|string|null: false|
 |city|string|null: false|
 |street|string|null:false|
-|appartment|string||
+|appartment|string||
 |phone_number|string||
 |user_id|references|foreign_key: true|
 ### Association
@@ -75,7 +80,7 @@ belongs_to :user
 |duration|string|null: false|
 |users_id|references|foreign_key: true|
 |images_id|references|foreign_key: true|
-|categories_id|references|foreign_key:true|
+|categories_id|references|foreign_key: true|
 ### Association
 belongs_to :user
 belongs_to :category
@@ -93,6 +98,6 @@ belongs_to :product
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|products_id|references|foreign_key:true|
+|products_id|references|foreign_key: true|
 ### Association
 has_many :products
