@@ -30,7 +30,7 @@ Things you may want to cover:
 |password|string|null: false|
 |e-mail_address|string|null: false|
 ### Association
-belongs_to :adresses
+belongs_to :addresses #スペルミス直した by Kensho
 belongs_to :cards
 has_many :products
 
@@ -65,7 +65,7 @@ belongs_to :user
 |discription||
 |condition||
 |delivery_charge||
-|place||
+|original_shipping_address||
 |duration||
 |users_id|reference|null: false, foreign_key: true|
 |images_id|reference|null: false, foreign_key: true|
