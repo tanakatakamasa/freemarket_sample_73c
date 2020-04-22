@@ -29,6 +29,13 @@ Things you may want to cover:
 |name|string|null: false|
 |password|string|null: false|
 |e-mail_address|string|null: false|
+|nickname|string|null: false|
+|last_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name|string|null: false|
+|first_name_kana|string|null: false|
+|birthday|date|null: false|
+
 ### Association
 belongs_to :adresses
 belongs_to :cards
@@ -37,22 +44,23 @@ has_many :products
 ## addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|postal_code||
-|prefecture||
-|city||
-|town||
-|street_building||
-|phone_number||
+|postal_code|string|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|town|string|null: false|
+|street_building|string||
+|phone_number|string||
+|user_id|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
 
 ## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number||
-|security_code||
-|expiration_year||
-|expiration_month||
+|card_number|integer|null: false|
+|security_code|integer|null: false|
+|expiration_year|integer|null: false|
+|expiration_month|integer|null: false|
 |users_id|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :user
@@ -60,13 +68,13 @@ belongs_to :user
 ## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|||
-|price||
-|discription||
-|condition||
-|delivery_charge||
-|place||
-|duration||
+|name|string|null: false|
+|price|integer|null: false|
+|discription|text|null: false|
+|condition|string|null: false|
+|delivery_charge|string|null: false|
+|original_shipping_address|string|null: false|
+|duration|string|null: false|
 |users_id|reference|null: false, foreign_key: true|
 |images_id|reference|null: false, foreign_key: true|
 |categories_id|reference|null: false, foreign_key: true|
@@ -78,7 +86,7 @@ has_many :images
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|product_image||
+|product_image|text|null: false|
 |products_id|reference|null: false, foreign_key: true|
 ### Association
 belongs_to :product
@@ -86,6 +94,7 @@ belongs_to :product
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name||
+|name|string|null: false|
+|products_id|reference|null: false|
 ### Association
 has_many :products
