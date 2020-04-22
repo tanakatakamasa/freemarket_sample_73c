@@ -49,7 +49,7 @@ has_many :products
 |prefecture|string|null: false|
 |city|string|null: false|
 |street|string|null:false|
-|apartment|string||
+|apartment|string||
 |phone_number|string||
 |user_id|references|foreign_key: true|
 ### Association
