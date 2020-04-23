@@ -52,7 +52,7 @@ has_many :products, dependent: :destroy
 |street|string|null:false|
 |apartment|string||
 |phone_number|string||
-|user_id|references|foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 belongs_to :user
 
@@ -63,7 +63,7 @@ belongs_to :user
 |security_code|string|null: false|
 |expiration_year|string|null: false|
 |expiration_month|string|null: false|
-|users_id|references|foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 belongs_to :user
 
@@ -77,9 +77,8 @@ belongs_to :user
 |delivery_charge|string|null: false|
 |original_shipping_address|string|null: false|
 |duration|string|null: false|
-|users_id|references|foreign_key: true|
-|images_id|references|foreign_key: true|
-|categories_id|references|foreign_key: true|
+|user_id|references|fnull: false, foreign_key: true|
+|category_id|references|fnull: false, foreign_key: true|
 ### Association
 belongs_to :user
 belongs_to :category
@@ -89,7 +88,7 @@ has_many :images, dependent: :destroy
 |Column|Type|Options|
 |------|----|-------|
 |product_image|string|null: false|
-|products_id|references|foreign_key: true|
+|product_id|references|null: false, foreign_key: true|
 ### Association
 belongs_to :product
 
@@ -97,6 +96,5 @@ belongs_to :product
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|products_id|references|foreign_key: true|
 ### Association
 has_many :products
