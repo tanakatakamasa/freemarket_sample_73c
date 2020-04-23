@@ -1,0 +1,24 @@
+.ii__pcHeader
+  .ii__pcHeader__headerInner
+    .ii__pcHeader__headerInner__mainHeader
+      %h1.ii__pcHeader__headerInner__mainHeader__icon
+        = link_to image_tag("material/logo/logo.png", class: "ii__pcHeader__headerInner__mainHeader__icon__image"), "#"
+      .ii__pcHeader__headerInner__mainHeader__searchBox
+        %form{"accept-charset" => "UTF-8", :action => "#", :method => "get"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}
+          %input.ii__pcHeader__headerInner__mainHeader__searchBox__input{:name => "key", :placeholder => "キーワードから探す"}
+            %button{:type => "submit"}
+              .ii__pcHeader__headerInner__mainHeader__searchBox__input__icon
+                = image_tag "material/icon/icon-search 1.png", :class => "ii__pcHeader__headerInner__mainHeader__searchBox__input__icon__image" 
+
+    .ii__pcHeader__headerInner__nav
+      %ul.ii__pcHeader__headerInner__nav__listLeft
+        %li.ii__pcHeader__headerInner__nav__listLeft__category
+          = link_to "カテゴリー", "#"
+        %li.ii__pcHeader__headerInner__nav__listLeft__brand
+          = link_to "ブランド", "#"
+      %ul.ii__pcHeader__headerInner__nav__listRight
+        %li.ii__pcHeader__headerInner__nav__listRight__login
+          = link_to "ログイン", "#"
+        %li.ii__pcHeader__headerInner__nav__listRight__signin
+          = link_to "新規会員登録", "#"

@@ -1,10 +1,10 @@
-%h1 Items#index
-%p Find me in app/views/items/index.html.erb
+.ii
 
-.is
-  .header
-  .breadCrumbs
-  .is__main
+  = render partial: "items/partials/header"
+
+  .ii__main
+
+  
     .is__main__showMain
       .is__main__showMain__contents
         .is__main__showMain__contents__topContent
@@ -17,5 +17,7 @@
             .is__main__showMain__contents__topContent__itemBox__optionalArea
           .is__main__showMain__contents__topContent__commentBox
         .is__main__showMain__contents__topContent__relatedItems
-  .aside
-  .footer
+
+  -# = render partial: "items/partials/banner"
+
+  -# = render partial: "items/partials/footer"
