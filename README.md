@@ -38,9 +38,10 @@ Things you may want to cover:
 |first_name_kana|string|null: false|
 |birthday|date|null: false|
 ### Association
-belongs_to :address 
-belongs_to :card
-has_many :products
+has_one :address, dependent: :destroy
+has_one :card, dependent: :destroy
+has_many :products, dependent: :destroy
+
 
 ## addressesテーブル
 |Column|Type|Options|
@@ -82,12 +83,12 @@ belongs_to :user
 ### Association
 belongs_to :user
 belongs_to :category
-has_many :images
+has_many :images, dependent: :destroy
 
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|product_image|text|null: false|
+|product_image|string|null: false|
 |products_id|references|foreign_key: true|
 ### Association
 belongs_to :product
