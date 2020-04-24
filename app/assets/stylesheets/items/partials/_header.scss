@@ -1,9 +1,5 @@
-
-
 .ii__pcHeader {
   padding: 0 60px;
-  display: block;
-  box-sizing: border-box;
   &__headerInner {
     max-width: 1040px;
     width: 100%;
@@ -58,23 +54,13 @@
       font-size: 14px;
       display: flex;
       margin-bottom: 10px;
+      ul {
+        list-style: none;
+      }
       &__listLeft {
         position: relative;
         display: flex;
-        &__category {
-          text-decoration: none;
-          padding: 0;
-          a {
-            color: #333;
-            text-decoration: none;
-            line-height: 32px;
-            background-position: center right;
-            background-repeat: no-repeat;
-            background-size: 18px;
-            padding-right: 30px;
-          }
-        }
-        &__brand {
+        &__item {
           display: flex;
           line-height: 38px;
           padding: 0 0 0 16px;
@@ -87,24 +73,48 @@
             background-size: 18px;
             padding-right: 30px;
           }
+          .displayNone {
+            display: none;
+          }
+          &__tree {
+            z-index: 2;
+            position: absolute;
+            background-color: #fff;
+            width: 240px;
+            top: 40px;
+            ul {
+              list-style: none;
+            }
+            &__categoryTree {
+              background-color: #fff;
+              display: flex;
+              flex-direction: column;
+              position: relative;
+              li {
+                position: relative;
+                a {
+                  line-height: 40px;
+                  display: block;
+                  width: 240px;
+                  padding: 3px 8px 3px 5px;
+                  border-bottom: 1px solid #f8f8f8;                
+                }
+              }
+            }
+          }
         }
+        &__first {
+          text-decoration: none;
+          padding: 0;      
+        }
+      }
+      ul {
+        list-style: none;
       }
       &__listRight {
         margin-left: auto;
-        display: flex;    
-        &__login {
-          color: #333;
-          line-height: 38px;
-          padding: 0 0 0 16px;
-          a {
-            display: flex;
-            align-items: center;
-            color: #333;
-            text-decoration: none;
-            line-height: 32px;
-          }
-        }
-        &__signin {
+        display: flex;
+        &__item {
           color: #333;
           line-height: 38px;
           padding: 0 0 0 16px;
@@ -120,4 +130,3 @@
     }
   }
 }
-
