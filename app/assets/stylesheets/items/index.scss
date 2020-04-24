@@ -1,3 +1,6 @@
+// 変数定義はマスターで他の人がしているため、今回のプルリクエストの段階ではしていません。
+// マージ後に上記変数を反映します。
+
 * {
   box-sizing: border-box;
 }
@@ -20,6 +23,7 @@ div {
 .ii__main {
   background: #f8f8f8;
 
+  // 人生を変えるフリマアプリの部分
   &__mainVisual {
     width: 100%;
     height: 560px;
@@ -73,6 +77,7 @@ div {
     }
   }
 
+  // FURIMAが選ばれる3つの理由の部分
   &__topIntroduction {
     padding: 60px 20px;
     &__subtitle {
@@ -152,6 +157,7 @@ div {
     }
   }
 
+  // FURIMAは、フリマアプリで最も人気。の部分
   &__topMiddleDl {
     background-image: url("#{asset_path('material/pict/bg-topMiddleDl-pict.jpg')}");
     background-position: bottom right;
@@ -202,6 +208,7 @@ div {
     }
   }
 
+  // FURIMAの特徴の部分
   &__topKeyFeatures {
     padding: 60px 100px;
     background-color: #fff;
@@ -260,6 +267,7 @@ div {
     }
   }
 
+  // ピックアップカテゴリーとピックアップブランドの部分（hamlコードはどちらも同じ）
   &__pickupContainer {
     padding: 80px 0 0;
     background-color: #f8f8f8;
@@ -289,7 +297,6 @@ div {
         justify-content: space-around;
         &__productList {
           width: 220px;
-          display: inline-block;
           float: left;
           a {
             background-color: #fff;
@@ -366,6 +373,7 @@ div {
   }
 }
 
+// 出品するボタンの部分
 .ii__main__purchaseBtn {
   width: 120px;
   background: #3CCACE;
