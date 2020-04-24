@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'items#show'
+  root 'items#index'
   resources :items
 end
