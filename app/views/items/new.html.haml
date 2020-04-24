@@ -6,8 +6,13 @@
         .in__main__image__title 
           出品画像 
           %span.required 必須
-        .in__main__image__text 最大10枚までアップロードできます
-        .in__main__image__file
+        .in__main__image__text 最大5枚までアップロードできます
+        = f.label :product_image do
+          .in__main__image__file
+            = f.file_field :product_image, class: "hide-file"
+            .in__main__image__file__content
+              %i.fa.fa-camera
+              %p.image-text クリックしてファイルをアップロード
       .in__main__discription
         .in__main__discription__name
           商品名
