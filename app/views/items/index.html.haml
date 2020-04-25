@@ -13,10 +13,8 @@
           %br
           フリマアプリです
         .ii__main__mainVisual__content__btn
-          %a{href: "#", class: "ii__main__mainVisual__content__btn__aBtn"}
-            = image_tag "material/icon/app-store-icon.svg"
-          %a{href: "#", class: "ii__main__mainVisual__content__btn__gBtn"}
-            = image_tag "material/icon/google-play-icon.svg"
+          = link_to image_tag("material/icon/app-store-icon.svg"), "#", class: "ii__main__mainVisual__content__btn__aBtn"
+          = link_to image_tag("material/icon/google-play-icon.svg"), "#", class: "ii__main__mainVisual__content__btn__gBtn"
 
     %section.ii__main__topIntroduction
       %h2.ii__main__topIntroduction__subtitle
@@ -60,10 +58,8 @@
           %br
           ほしかったあの商品に出会えるかもしれません。
         .ii__main__topMiddleDl__inner__btn
-          %a{href: "#"}
-            = image_tag "material/icon/app-store-icon.svg", class: "ii__main__topMiddleDl__inner__btn__aBtn" 
-          %a{href: "#"}
-            = image_tag "material/icon/google-play-icon.svg", class: "ii__main__topMiddleDl__inner__btn__gBtn"  
+          = link_to image_tag("material/icon/app-store-icon.svg"), "#", class: "ii__main__topMiddleDl__inner__btn__aBtn" 
+          = link_to image_tag("material/icon/google-play-icon.svg"), "#", class: "ii__main__topMiddleDl__inner__btn__aBtn" 
 
     %section.ii__main__topKeyFeatures
       %h2.ii__main__topKeyFeatures__head FURIMAの特徴
@@ -91,11 +87,11 @@
       %h2.ii__main__pickupContainer__head ピックアップカテゴリー
       .ii__main__pickupContainer__productBox
         .ii__main__pickupContainer__productBox__productHead
-          %a{href: "#"}
+          =link_to "#" do
             %h3.ii__main__pickupContainer__productBox__productHead__title 新規投稿商品
         .ii__main__pickupContainer__productBox__productLists
           .ii__main__pickupContainer__productBox__productLists__productList
-            %a{:href => "#"}
+            =link_to "#" do
               %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                 = image_tag "material/pict/product_sample_pict3.png"
               .ii__main__pickupContainer__productBox__productLists__productList__productList--body
@@ -108,7 +104,7 @@
                       0
                   %p (税込)
           .ii__main__pickupContainer__productBox__productLists__productList
-            %a{href: "#"}
+            =link_to "#" do
               %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                 = image_tag "material/pict/product_sample_pict2.png"
               .ii__main__pickupContainer__productBox__productLists__productList__productList--body
@@ -121,7 +117,7 @@
                       0
                   %p (税込)
           .ii__main__pickupContainer__productBox__productLists__productList
-            %a{href: "#"}
+            =link_to "#" do
               %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                 = image_tag "material/pict/product_sample_pict1.png"
               .ii__main__pickupContainer__productBox__productLists__productList__productList--body
@@ -138,11 +134,11 @@
       %h2.ii__main__pickupContainer__head ピックアップブランド
       .ii__main__pickupContainer__productBox
         .ii__main__pickupContainer__productBox__productHead
-          %a{href: "#"}
+          =link_to "#" do
             %h3.ii__main__pickupContainer__productBox__productHead__title アーカイバ
         .ii__main__pickupContainer__productBox__productLists
           .ii__main__pickupContainer__productBox__productLists__productList
-            %a{:href => "#"}
+            =link_to "#" do
               %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                 = image_tag "material/pict/product_sample_pict3.png"
               .ii__main__pickupContainer__productBox__productLists__productList__productList--body
@@ -155,7 +151,7 @@
                       0
                   %p (税込)
           .ii__main__pickupContainer__productBox__productLists__productList
-            %a{href: "#"}
+            =link_to "#" do
               %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                 = image_tag "material/pict/product_sample_pict2.png"
               .ii__main__pickupContainer__productBox__productLists__productList__productList--body
@@ -168,7 +164,7 @@
                       0
                   %p (税込)
           .ii__main__pickupContainer__productBox__productLists__productList
-            %a{href: "#"}
+            =link_to "#" do
               %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                 = image_tag "material/pict/product_sample_pict1.png"
               .ii__main__pickupContainer__productBox__productLists__productList__productList--body
@@ -185,7 +181,7 @@
 
   = render partial: "items/partials/footer"
 
-  %a{href: "#"}
+  =link_to "#" do
     .ii__main__purchaseBtn
       %span.ii__main__purchaseBtn__text 出品する
       = image_tag "material/icon/icon_camera.png", class: "ii__main__purchaseBtn__icon"
