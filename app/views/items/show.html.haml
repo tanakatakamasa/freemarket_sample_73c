@@ -1,5 +1,6 @@
 .is
   .header
+  -# = render partial: "items/partials/header"
   .breadCrumbs
   .is__main
     .is__main__showMain
@@ -7,10 +8,27 @@
         .is__main__showMain__contents__topContent
           .is__main__showMain__contents__topContent__itemBox
             %h2.itemName aaa
+            %h2.is__main__showMain__contents__topContent__itemBox__name item1
             .is__main__showMain__contents__topContent__itemBox__body
+              %ul
+                %li
+                  %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg")
+                  %ul
+                    %li
+                      %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg" width="75" height="75")
+                    %li
+                      %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg" width="75" height="75")
+                    %li
+                      %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg" width="75" height="75")
             .is__main__showMain__contents__topContent__itemBox__price
+              %span ¥1500
+              .is__main__showMain__contents__topContent__itemBox__price-detail
+                %span (税込)
+                %span 送料込み
             .is__main__showMain__contents__topContent__itemBox__detail
+              あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこ
             .is__main__showMain__contents__topContent__itemBox__table
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             .is__main__showMain__contents__topContent__itemBox__optionalArea
           .is__main__showMain__contents__topContent__commentBox
@@ -44,6 +62,40 @@
               = link_to "購入画面へ進む", "#"
               
             .is__main__showMain__contents__topContent__itemBox__optionalArea
+=======
+              %table
+                %tBody
+                  %tr
+                    %th 出品者
+                    %td hoge
+                  %tr
+                    %th カテゴリー
+                    %td 
+                      = link_to "ネクタイ", "#"
+                  -# %tr
+                  -#   %th ブランド
+                  -#   %td
+                  -# %tr
+                  -#   %th 商品のサイズ
+                  -#   %td
+                  %tr
+                    %th 商品の状態
+                    %td 未使用に近い
+                  %tr
+                    %th 配送料の負担
+                    %td 送料込み（出品者負担）
+                  %tr
+                    %th 発送元の地域
+                    %td
+                      = link_to "千葉県", "#"
+                  %tr
+                    %th 発送日の目安
+                    %td 4-7日で発送
+            .is__main__showMain__contents__topContent__itemBox__buyBtn
+              = link_to "購入画面へ進む", "#"
+              
+            .is__main__showMain__contents__topContent__itemBox__optionalArea
+>>>>>>> 8253c5189044795ab5f1ab54bb9dae3a57fd45c3
               %ul
                 %li#likeBtn.optionalBtn.likeBtn
                   %i.fa.fa-star
@@ -53,7 +105,10 @@
                   = link_to "#" do
                     %i.fa.fa-flag 不適切な商品の通報
 
+<<<<<<< HEAD
         -# コメント機能実装時に使用
+=======
+>>>>>>> 8253c5189044795ab5f1ab54bb9dae3a57fd45c3
         -#   .is__main__showMain__contents__topContent__commentBox
         -#     %ul.commentContents
         -#     %form#new_comment.content
@@ -89,4 +144,7 @@
             %li.container__social-media__box__pinterest
               = link_to "" do
                 %i.fab.fa-pinterest-square.fa-3x
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 8253c5189044795ab5f1ab54bb9dae3a57fd45c3
