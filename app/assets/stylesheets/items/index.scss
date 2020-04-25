@@ -340,22 +340,6 @@ div {
                   align-items: center;
                   justify-content: space-between;
                   list-style: none;
-                  li {
-                    i {
-                      color: black;
-                      .fa {
-                        display: inline-block;
-                        font: normal normal normal 14px/1 FontAwesome;
-                        font-size: inherit;
-                        text-rendering: auto;
-                        -webkit-font-smoothing: antialiased;
-                        font-family: "Font Awesome 5 Free";
-                      }
-                      .fa-star:before {
-                        content: "\f005";
-                      }
-                    }
-                  }
                 }
                 p {
                   font-size: 10px;
