@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-[70b61f76-50a6-4ca5-8843-51c6970194fb copy.pdf](https://github.com/uwkoichi/freemarket_sample_73c/files/4534372/70b61f76-50a6-4ca5-8843-51c6970194fb.copy.pdf)
+<img width="889" alt="Screen Shot 2020-04-26 at 08 40 46" src="https://user-images.githubusercontent.com/62594253/80293369-b2ef6180-8799-11ea-87b5-88e8984fe0b0.png">
 
 ## usersテーブル
 |Column|Type|Options|
