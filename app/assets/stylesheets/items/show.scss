@@ -1,12 +1,4 @@
-// このページで使う変数定義
-$global-back-color:#f8f8f8;
-$normal-white:#fff;
-$normal-gray:#eee;
-$table-border-coler:#dedede;
-$link-text-color: #3CCACE;
-$link-text-hovercolor: #1ff3f3;
-$default-font-black: #333;
-
+@import "variables";
 
 // 大枠
 .is {
