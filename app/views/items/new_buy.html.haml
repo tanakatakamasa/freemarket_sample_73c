@@ -27,7 +27,8 @@
           %ul.pn__main-container__purchase-details__item__inner__purchase-details__use-points
             %li.pn__main-container__purchase-details__item__inner__purchase-details__use-points__top
               .pn__main-container__purchase-details__item__inner__purchase-details__use-points__top__title
-                = check_box :group, :user_ids, {class: "check_box"}, true, false
+                -# 下記のモデル、テーブル指定は仮置きです。
+                = check_box :users, :user_point, {class: "check_box"}, true, false
                 ポイントを使用(所持ポイント:P0)
 
     %section.pn__main-container__purchase-details__user-info
