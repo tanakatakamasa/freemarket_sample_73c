@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-![DB設計](https://user-images.githubusercontent.com/62594253/80082338-32f5ab80-858f-11ea-84fa-d0de45633739.jpeg)
+[70b61f76-50a6-4ca5-8843-51c6970194fb copy.pdf](https://github.com/uwkoichi/freemarket_sample_73c/files/4534372/70b61f76-50a6-4ca5-8843-51c6970194fb.copy.pdf)
 
 ## usersテーブル
 |Column|Type|Options|
