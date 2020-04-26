@@ -28,31 +28,31 @@
             }
             &__body {
               margin: 16px 0 0;
-              ul {
-                display: flex;
-                position: relative;
+              ul.mainImage {
+                height: 350px;
+                overflow: hidden;
                 li {
-                  display: flex;
-                  flex-direction: column;
-                  width: 560px;
-                  align-items: center;
-                  margin: 0 auto;
+                  height: 100%;
+                  margin: auto;
                   img {
-                    object-fit: cover;
-                    height: 346px;
+                    display: block;
+                    margin: 0 auto;
                   }
-                  ul {
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 10px;
-                    li {
-                      width: 25%;
-                      margin: 0 10px 0 0;
-                      img {
-                        object-fit: cover;
-                        height: 87px;
-                      }
-                    }
+                }
+              }
+              ul.thumbImage {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                li {
+                  width: 25%;
+                  img {
+                    margin: 0 auto;
+                    display: block;
+                    cursor: pointer;
+                  }
+                  img:hover {
+                    opacity: 0.5;
                   }
                 }
               }
@@ -189,7 +189,7 @@
         }
         .links {
           padding-top: 5px;
-          li {
+          li.p_icon {
             float: left;
             a {
               text-decoration: none;
@@ -203,16 +203,18 @@
               transition: .1s;
             }
           }
-          
-          li:last-child{
+          li.n_icon {
             float: right;
             a {
-              // text-decoration: none;
-              // color: #3CCACE;
-              
+              text-decoration: none;
+              color: $link-text-color;
               .fa-angle-right:before {
                 content: "\f105";
               }
+            }
+            a:hover {
+              color: $link-text-hovercolor;
+              transition: .1s;
             }
           }
         }
