@@ -2,13 +2,6 @@ class ItemsController < ApplicationController
   def index
   end
 
-
-
-
-
-  
-  
-  
   def show
     @item = Item.find(params[:id])
     item_id = @item.id
@@ -20,19 +13,10 @@ class ItemsController < ApplicationController
     @n_item = Item.find(params[:id]).next
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
   def new
+  end
+
+  def new_buy
   end
   
 end

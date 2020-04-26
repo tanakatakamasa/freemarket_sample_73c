@@ -1,4 +1,9 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :burden
+  belongs_to_active_hash :duration
   has_many :images, dependent: :destroy
   belongs_to :user
   belongs_to :category
@@ -7,9 +12,9 @@ class Item < ApplicationRecord
     validates :name
     validates :price
     validates :discription
-    validates :condition
+    validates :condition_id
     validates :delivery_charge
-    validates :original_shipping_address
+    validates :prefecture_id
     validates :duration
   end
 
