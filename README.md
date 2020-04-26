@@ -75,11 +75,12 @@ belongs_to :user
 |discription|text|null: false|
 |condition|string|null: false|
 |delivery_charge|string|null: false|
-|original_shipping_address|string|null: false|
+|prefecture_id|integer|null: false|
 |duration|string|null: false|
 |user_id|references|fnull: false, foreign_key: true|
 |category_id|references|fnull: false, foreign_key: true|
 ### Association
+belongs_to_active_hash :prefecture
 belongs_to :user
 belongs_to :category
 has_many :images, dependent: :destroy
