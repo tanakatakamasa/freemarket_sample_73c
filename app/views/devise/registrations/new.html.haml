@@ -6,8 +6,6 @@
       .un__header__box__right
         .un__header__box__right__login
           = link_to "ログイン画面へ","/", class: "un__header__box__right__login__btn"
-          
-
   .un__main
     .un__main__header 
       会員情報入力
@@ -37,16 +35,12 @@
                 %em
                   (#{@minimum_password_length} characters minimum)
               %br/
-              = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "field__password"
+              = f.password_field :encrypted_password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "field__password"
               %p ※ 英字と数字の両方を含めて設定してください
             .field_confirm
               = f.label :パスワード（確認）, class:"field__label"
               %span.require 必須
-              -# - if @minimum_password_length
-              -#   %em
-              -#     (#{@minimum_password_length} characters minimum)
-              -# %br/
-              = f.password_field :password, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
+              = f.password_field :password_digest, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
             .identification
               %h2 本人確認
               %br/
@@ -70,8 +64,7 @@
               %span.require 必須
               %br/
               .form_birthday__selector
-                = f.date_select :birth_date, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 10), default: Date.new(Time.now.year,Time.now.month,Time.now.day), class:"a"
-
+                = f.date_select :birthday, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 10), default: Date.new(Time.now.year,Time.now.month,Time.now.day), class:"a"
             .move_next
               %P ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
               = link_to "登録する","/", class: "next_btn"
