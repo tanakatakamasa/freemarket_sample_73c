@@ -73,14 +73,17 @@ belongs_to :user
 |name|string|null: false|
 |price|integer|null: false|
 |discription|text|null: false|
-|condition|string|null: false|
-|delivery_charge|string|null: false|
+|condition_id|integer|null: false|
+|burden_id|integer|null: false|
 |prefecture_id|integer|null: false|
-|duration|string|null: false|
+|duration_id|integer|null: false|
 |user_id|references|fnull: false, foreign_key: true|
 |category_id|references|fnull: false, foreign_key: true|
 ### Association
 belongs_to_active_hash :prefecture
+belongs_to_active_hash :duration
+belongs_to_active_hash :condition
+belongs_to_active_hash :burden
 belongs_to :user
 belongs_to :category
 has_many :images, dependent: :destroy
