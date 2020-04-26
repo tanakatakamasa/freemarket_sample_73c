@@ -48,7 +48,7 @@
               -# %br/
               = f.password_field :password, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
             .identification
-              %h1 本人確認
+              %h2 本人確認
               %br/
               %ol 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
             .form_group
@@ -76,7 +76,7 @@
             
             
             .address
-              %h1 商品送付先住所情報
+              %h3 商品送付先住所情報
             .form_group
               = f.label :送付先氏名（全角）,class:"field__label"
               %span.require 必須
