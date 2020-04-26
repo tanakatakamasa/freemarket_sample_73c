@@ -1,0 +1,58 @@
+.ii__pcHeader
+  .ii__pcHeader__headerInner
+    .ii__pcHeader__headerInner__mainHeader
+      %h1.ii__pcHeader__headerInner__mainHeader__icon
+        = link_to image_tag("material/logo/logo.png"), "#"
+      .ii__pcHeader__headerInner__mainHeader__searchBox
+        %form{"accept-charset": "UTF-8", action: "#", method: "get"}
+          %input{name: "utf8", type: "hidden", value: "✓"}
+          %input.ii__pcHeader__headerInner__mainHeader__searchBox__input{name: "key", placeholder: "キーワードから探す"}
+          %button{type: "submit"}
+            .ii__pcHeader__headerInner__mainHeader__searchBox__input__icon
+              = image_tag "material/icon/icon-search 1.png" 
+
+    .ii__pcHeader__headerInner__nav
+      %ul.ii__pcHeader__headerInner__nav__listLeft
+        %li.ii__pcHeader__headerInner__nav__listLeft__item.ii__pcHeader__headerInner__nav__listLeft__first
+          = link_to "カテゴリー", "#"
+          .ii__pcHeader__headerInner__nav__listLeft__item__tree.displayNone
+            %ul.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "レディース", "#", id: "1"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "メンズ", "#", id: "2"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "ベビー・キッズ", "#", id: "3"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "インテリア・住まい・小物", "#", id: "4"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "本・音楽・ゲーム", "#", id: "5"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "おもちゃ・ホビー・グッズ", "#", id: "6"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "コスメ・香水・美容", "#", id: "7"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "家電・スマホ・カメラ", "#", id: "8"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "スポーツ・レジャー", "#", id: "9"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "ハンドメイド", "#", id: "10"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "チケット", "#", id: "11"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "自動車・オートバイ", "#", id: "12"
+              %li.ii__pcHeader__headerInner__nav__listLeft__item__tree__categoryTree__categoryTree--item
+                = link_to "その他", "#", id: "13"
+        %li.ii__pcHeader__headerInner__nav__listLeft__item
+          = link_to "ブランド", "#"
+      
+      - if user_signed_in?
+        %ul.ii__pcHeader__headerInner__nav__listRight
+          %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--mypage
+          = link_to "マイページ", "/users/#{current_user.id}"
+      - else
+        %ul.ii__pcHeader__headerInner__nav__listRight
+          %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--login
+            = link_to "ログイン", "#"
+          %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--new
+            = link_to "新規会員登録", "#"

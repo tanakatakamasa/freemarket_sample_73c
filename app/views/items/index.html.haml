@@ -1,21 +1,187 @@
-%h1 Items#index
-%p Find me in app/views/items/index.html.erb
+.ii
 
-.is
-  .header
-  .breadCrumbs
-  .is__main
-    .is__main__showMain
-      .is__main__showMain__contents
-        .is__main__showMain__contents__topContent
-          .is__main__showMain__contents__topContent__itemBox
-            %h2.itemName
-            .is__main__showMain__contents__topContent__itemBox__body
-            .is__main__showMain__contents__topContent__itemBox__price
-            .is__main__showMain__contents__topContent__itemBox__detail
-            .is__main__showMain__contents__topContent__itemBox__table
-            .is__main__showMain__contents__topContent__itemBox__optionalArea
-          .is__main__showMain__contents__topContent__commentBox
-        .is__main__showMain__contents__topContent__relatedItems
-  .aside
-  .footer
+  = render partial: "partials/header"
+
+  .ii__main
+    %section.ii__main__mainVisual
+      .ii__main__mainVisual__content
+        %h2.ii__main__mainVisual__content__subtitle
+          %br
+          人生を変えるフリマアプリ
+        %p.ii__main__mainVisual__content__text
+          FURIMAはだれでもかんたんに出品・購入できる
+          %br
+          フリマアプリです
+        .ii__main__mainVisual__content__btn
+          = link_to image_tag("material/icon/app-store-icon.svg"), "#", class: "ii__main__mainVisual__content__btn__aBtn"
+          = link_to image_tag("material/icon/google-play-icon.svg"), "#", class: "ii__main__mainVisual__content__btn__gBtn"
+
+    %section.ii__main__topIntroduction
+      %h2.ii__main__topIntroduction__subtitle
+        FURIMAが選ばれる3つの理由
+      %ul.ii__main__topIntroduction__lists
+        %li.ii__main__topIntroduction__lists__list
+          .ii__main__topIntroduction__lists__list__pict
+            %span.ii__main__topIntroduction__lists__list__pict__number 1
+            = image_tag "material/pict/pict-reason-01.jpg" 
+          %h3.ii__main__topIntroduction__lists__list__text
+            %span 3分
+            ですぐに出品
+          %p.ii__main__topIntroduction__lists__list__description
+            スマホで入力するだけで簡単に出品できる！
+        %li.ii__main__topIntroduction__lists__list
+          .ii__main__topIntroduction__lists__list__pict
+            %span.ii__main__topIntroduction__lists__list__pict__number 2
+            = image_tag "material/pict/pict-reason-02.jpg" 
+          %h3.ii__main__topIntroduction__lists__list__text
+            %span シンプル
+            で使いやすい
+          %p.ii__main__topIntroduction__lists__list__description
+            めんどくさい入力は必要なく、検索も購入もスムーズ！
+        %li.ii__main__topIntroduction__lists__list.ii__main__topIntroduction__lists__list--last
+          .ii__main__topIntroduction__lists__list__pict
+            %span.ii__main__topIntroduction__lists__list__pict__number 3
+            = image_tag "material/pict/pict-reason-03.jpg" 
+          %h3.ii__main__topIntroduction__lists__list__text
+            手数料
+            %span 業界最安
+          %p.ii__main__topIntroduction__lists__list__description
+            最大3%でお得に出品&amp;購入！
+                
+    %section.ii__main__topMiddleDl
+      .ii__main__topMiddleDl__inner
+        %h2.ii__main__topMiddleDl__inner__subtitle 会員数日本一位
+        %p.ii__main__topMiddleDl__inner__text
+          FURIMAは、フリマアプリで最も人気。
+          %br
+          出品・購入回数も業界最多です！
+          %br
+          ほしかったあの商品に出会えるかもしれません。
+        .ii__main__topMiddleDl__inner__btn
+          = link_to image_tag("material/icon/app-store-icon.svg"), "#", class: "ii__main__topMiddleDl__inner__btn__aBtn" 
+          = link_to image_tag("material/icon/google-play-icon.svg"), "#", class: "ii__main__topMiddleDl__inner__btn__aBtn" 
+
+    %section.ii__main__topKeyFeatures
+      %h2.ii__main__topKeyFeatures__head FURIMAの特徴
+      .ii__main__topKeyFeatures__items
+        %section.ii__main__topKeyFeatures__items__item
+          %figure.ii__main__topKeyFeatures__items__item__img
+            = image_tag "material/icon/icon-01.png"
+          %h3.ii__main__topKeyFeatures__items__item__subtitle 簡単に売り買いできる
+          %p.ii__main__topKeyFeatures__items__item__detail
+            スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+        %section.ii__main__topKeyFeatures__items__item
+          %figure.ii__main__topKeyFeatures__items__item__img
+            = image_tag "material/icon/icon-03.png"
+          %h3.ii__main__topKeyFeatures__items__item__subtitle 売上金は即日振込みに対応
+          %p.ii__main__topKeyFeatures__items__item__detail
+            午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+        %section.ii__main__topKeyFeatures__items__item
+          %figure.ii__main__topKeyFeatures__items__item__img
+            = image_tag "material/icon/icon-04.png"
+          %h3.ii__main__topKeyFeatures__items__item__subtitle 様々な支払いに対応
+          %p.ii__main__topKeyFeatures__items__item__detail
+            お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+    %section.ii__main__pickupContainer
+      %h2.ii__main__pickupContainer__head ピックアップカテゴリー
+      .ii__main__pickupContainer__productBox
+        .ii__main__pickupContainer__productBox__productHead
+          =link_to "#" do
+            %h3.ii__main__pickupContainer__productBox__productHead__title 新規投稿商品
+        .ii__main__pickupContainer__productBox__productLists
+          .ii__main__pickupContainer__productBox__productLists__productList
+            =link_to "#" do
+              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                = image_tag "material/pict/product_sample_pict3.png"
+              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product3
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                  %ul
+                    %li 30000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+          .ii__main__pickupContainer__productBox__productLists__productList
+            =link_to "#" do
+              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                = image_tag "material/pict/product_sample_pict2.png"
+              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product2
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                  %ul
+                    %li 20000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+          .ii__main__pickupContainer__productBox__productLists__productList
+            =link_to "#" do
+              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                = image_tag "material/pict/product_sample_pict1.png"
+              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product1
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+
+    %section.ii__main__pickupContainer
+      %h2.ii__main__pickupContainer__head ピックアップブランド
+      .ii__main__pickupContainer__productBox
+        .ii__main__pickupContainer__productBox__productHead
+          =link_to "#" do
+            %h3.ii__main__pickupContainer__productBox__productHead__title アーカイバ
+        .ii__main__pickupContainer__productBox__productLists
+          .ii__main__pickupContainer__productBox__productLists__productList
+            =link_to "#" do
+              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                = image_tag "material/pict/product_sample_pict3.png"
+              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product3
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                  %ul
+                    %li 30000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+          .ii__main__pickupContainer__productBox__productLists__productList
+            =link_to "#" do
+              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                = image_tag "material/pict/product_sample_pict2.png"
+              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product2
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                  %ul
+                    %li 20000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+          .ii__main__pickupContainer__productBox__productLists__productList
+            =link_to "#" do
+              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                = image_tag "material/pict/product_sample_pict1.png"
+              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product1
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+
+  = render partial: "partials/banner"
+
+  = render partial: "partials/footer"
+
+  =link_to "#" do
+    .ii__main__purchaseBtn
+      %span.ii__main__purchaseBtn__text 出品する
+      = image_tag "material/icon/icon_camera.png", class: "ii__main__purchaseBtn__icon"
