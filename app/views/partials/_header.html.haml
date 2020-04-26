@@ -49,7 +49,7 @@
       - if user_signed_in?
         %ul.ii__pcHeader__headerInner__nav__listRight
           %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--mypage
-          = link_to "マイページ", "#"
+          = link_to "マイページ", "/users/#{current_user.id}"
       - else
         %ul.ii__pcHeader__headerInner__nav__listRight
           %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--login
