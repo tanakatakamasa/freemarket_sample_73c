@@ -47,7 +47,7 @@ has_many :products, dependent: :destroy
 |Column|Type|Options|
 |------|----|-------|
 |postal_code|string|null: false|
-|prefecture|string|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |street|string|null:false|
 |apartment|string||
@@ -67,7 +67,7 @@ belongs_to :user
 ### Association
 belongs_to :user
 
-## productsテーブル
+## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|

@@ -1,0 +1,32 @@
+.un
+  .un__header
+    .un__header__box
+      .un__header__box__logo
+        = link_to image_tag("logo.png", size: "185x49"), "/"
+
+  .un__main
+    .un__main__header 
+      アカウントをお持ちでない方はこちら
+    .un__main__contents
+      .un__main__contents__list
+        .un__main__contents__list__form
+          = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
+            = render "devise/shared/error_messages", resource: resource
+
+  %h2 Log in
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :password
+      %br/
+      = f.password_field :password, autocomplete: "current-password"
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me
+    .actions
+      = f.submit "Log in"
+  -# = render "devise/shared/links"

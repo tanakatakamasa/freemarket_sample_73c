@@ -1,0 +1,78 @@
+.un
+  .un__header
+    .un__header__box
+      .un__header__box__left
+        = link_to image_tag("logo.png", size: "185x49"), "/"
+      .un__header__box__right
+        .un__header__box__right__login
+          = link_to "ログイン画面へ","/", class: "un__header__box__right__login__btn"
+  .un__main
+    .un__main__header 
+      会員情報入力
+    .un__main__contents
+      .un__main__contents__list
+        .un__main__contents__list__form
+          = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
+            = render "devise/shared/error_messages", resource: resource
+            .user_information
+              %h1 ユーザー情報
+              %br/
+            .field
+              = f.label :ニックネーム, class:"field__label"
+              %span.require 必須
+              %br/
+              = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "例）フリマ太郎", class:"field__input"
+              %br/
+            .field
+              = f.label :メールアドレス, class:"field__label"
+              %span.require 必須
+              %br/
+              = f.email_field :email, autocomplete: "email", placeholder:"PC・携帯どちらでも可", class: "field__input"
+            .field
+              = f.label :パスワード, class:"field__label"
+              %span.require 必須
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
+              %br/
+              = f.password_field :encrypted_password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "field__password"
+              %p ※ 英字と数字の両方を含めて設定してください
+            .field_confirm
+              = f.label :パスワード（確認）, class:"field__label"
+              %span.require 必須
+              = f.password_field :password_digest, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
+            .identification
+              %h2 本人確認
+              %br/
+              %ol 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+            .form_group
+              = f.label :お名前（全角）,class:"field__label"
+              %span.require 必須
+              %br/
+              .form_group__input
+                = f.text_field :last_name, autocomplete: "family_name", placeholder:"例)山田", class:"form_group__input__inf"
+                = f.text_field :first_name, autocomplete: "given_name", placeholder:"例)太郎", class:"form_group__input__inf"
+            .form_group
+              = f.label :お名前カナ（全角）, class:"field__label"
+              %span.require 必須
+              %br/
+              .form_group__input
+                = f.text_field :last_name_kana, autocomplete: "on", placeholder:"例)ヤマダ", class:"form_group__input__inf"
+                = f.text_field :first_name_kana, autocomplete: "on", placeholder:"例)タロウ", class:"form_group__input__inf"
+            .form_birthday
+              = f.label :生年月日,class:"field__label"
+              %span.require 必須
+              %br/
+              .form_birthday__selector
+                = f.date_select :birthday, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 10), default: Date.new(Time.now.year,Time.now.month,Time.now.day), class:"a"
+            .move_next
+              %P ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+              = link_to "登録する","/", class: "next_btn"
+  .un__footer
+    .un__footer__contents
+      = link_to "プライバシーポリシー","/", class: "un__footer__contents__link"
+      = link_to "FURIMA利用規約","/", class: "un__footer__contents__link"
+      = link_to "特定商取引に関する表記","/", class: "un__footer__contents__link"
+      .un__footer__contents__logo
+        = link_to image_tag("logo.png", size: "130x50"), "/", class: "un__footer__contents__logo__btn"
+        %p © Mercari, Inc.
