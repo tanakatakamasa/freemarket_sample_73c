@@ -45,9 +45,14 @@
                 = link_to "その他", "#", id: "13"
         %li.ii__pcHeader__headerInner__nav__listLeft__item
           = link_to "ブランド", "#"
-          
-      %ul.ii__pcHeader__headerInner__nav__listRight
-        %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--login
-          = link_to "ログイン", "#"
-        %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--new
-          = link_to "新規会員登録", "#"
+      
+      - if user_signed_in?
+        %ul.ii__pcHeader__headerInner__nav__listRight
+          %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--mypage
+          = link_to "マイページ", "/users/#{current_user.id}"
+      - else
+        %ul.ii__pcHeader__headerInner__nav__listRight
+          %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--login
+            = link_to "ログイン", "#"
+          %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--new
+            = link_to "新規会員登録", "#"
