@@ -43,7 +43,7 @@
         .in__main__ship__region
           発送元の地域
           %span.required 必須
-        = f.select :original_shipping_address, [["北海道","北海道"],["青森","青森"]],{prompt: "選択してください"},{ class: "in__main__ship__regionForm"}
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,{prompt: "選択してください"},{ class: "in__main__ship__regionForm"}
         .in__main__ship__day
           発送までの日数
           %span.required 必須
