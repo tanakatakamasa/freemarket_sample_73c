@@ -32,22 +32,22 @@
         .in__main__show__condition
           商品の状態
           %span.required 必須
-        = f.select :condition, [["新品、未使用","新品、未使用"],["未使用に近い","未使用に近い"]],{prompt: "選択してください"},{ class: "in__main__show__form"}
+        = f.collection_select :condition_id, Condition.all, :id, :name,{prompt: "選択してください"},{ class: "in__main__show__form"}
       .in__main__ship
         .in__main__ship__title
           配送について
         .in__main__ship__charge
           配送料の負担
           %span.required 必須
-        = f.select :delivery_charge, [["送料込み(出品者負担)","送料込み"],["着払い","購入者負担"]],{prompt: "選択してください"},{ class: "in__main__ship__chargeForm"}
+        = f.collection_select :burden_id, Burden.all, :id, :name,{prompt: "選択してください"},{ class: "in__main__ship__chargeForm"}
         .in__main__ship__region
           発送元の地域
           %span.required 必須
-        = f.select :original_shipping_address, [["北海道","北海道"],["青森","青森"]],{prompt: "選択してください"},{ class: "in__main__ship__regionForm"}
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,{prompt: "選択してください"},{ class: "in__main__ship__regionForm"}
         .in__main__ship__day
           発送までの日数
           %span.required 必須
-        = f.select :duration, [["1~2日で発送","1~2日で発送"],["2~3日で発送","2~3日で発送"]],{prompt: "選択してください"},{ class: "in__main__ship__form"}
+        = f.collection_select :duration_id, Duration.all, :id, :name,{prompt: "選択してください"},{ class: "in__main__ship__form"}
       .in__main__price
         .in__main__price__title
           価格（¥300〜9,999,999）

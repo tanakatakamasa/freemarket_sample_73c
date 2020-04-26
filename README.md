@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-![DB設計](https://user-images.githubusercontent.com/62594253/80082338-32f5ab80-858f-11ea-84fa-d0de45633739.jpeg)
+![DB設計](https://user-images.githubusercontent.com/62594253/80297262-86007600-87bc-11ea-919d-6a68e4e696e7.jpeg)
 
 ## usersテーブル
 |Column|Type|Options|
@@ -73,13 +73,17 @@ belongs_to :user
 |name|string|null: false|
 |price|integer|null: false|
 |discription|text|null: false|
-|condition|string|null: false|
-|delivery_charge|string|null: false|
-|original_shipping_address|string|null: false|
-|duration|string|null: false|
+|condition_id|integer|null: false|
+|burden_id|integer|null: false|
+|prefecture_id|integer|null: false|
+|duration_id|integer|null: false|
 |user_id|references|fnull: false, foreign_key: true|
 |category_id|references|fnull: false, foreign_key: true|
 ### Association
+belongs_to_active_hash :prefecture
+belongs_to_active_hash :duration
+belongs_to_active_hash :condition
+belongs_to_active_hash :burden
 belongs_to :user
 belongs_to :category
 has_many :images, dependent: :destroy
