@@ -1,4 +1,5 @@
 .pn__main-container
+  = render partial: "partials/header"
   %section.pn__main-container__purchase-details
     %h2.pn__main-container__purchase-details__title
       購入内容の確認
@@ -65,4 +66,4 @@
       = link_to method: :post,class: "submit-btn submit-btn-red" do
         %li.pn__main-container__purchase-details__item__inner__purchase-details__purchase-button__box
           購入する
-
+  = render partial: "partials/footer"
