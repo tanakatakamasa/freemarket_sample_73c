@@ -76,7 +76,8 @@ end
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
-gem 'pry-rails'
+# 下のpry-railsは上のdevelopment, testにあるpry-railsと重複してると警告が出るのでコメントアウトしました。消してもいいです。
+# gem 'pry-rails'
 gem 'font-awesome-sass'
 gem 'haml-rails'
 gem 'devise'
