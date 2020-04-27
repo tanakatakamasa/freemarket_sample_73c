@@ -1,17 +1,17 @@
-.un
-  .un__header
-    .un__header__box
-      .un__header__box__left
+.ur
+  .ur__header
+    .ur__header__box
+      .ur__header__box__left
         = link_to image_tag("logo.png", size: "185x49"), "/"
-      .un__header__box__right
-        .un__header__box__right__login
-          = link_to "ログイン画面へ","/", class: "un__header__box__right__login__btn"
-  .un__main
-    .un__main__header 
+      .ur__header__box__right
+        .ur__header__box__right__login
+          = link_to "ログイン画面へ","/users/sign_in", class: "ur__header__box__right__login__btn"
+  .ur__main
+    .ur__main__header 
       会員情報入力
-    .un__main__contents
-      .un__main__contents__list
-        .un__main__contents__list__form
+    .ur__main__contents
+      .ur__main__contents__list
+        .ur__main__contents__list__form
           = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
             = render "devise/shared/error_messages", resource: resource
             .user_information
@@ -68,11 +68,11 @@
             .move_next
               %P ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
               = link_to "登録する","/", class: "next_btn"
-  .un__footer
-    .un__footer__contents
-      = link_to "プライバシーポリシー","/", class: "un__footer__contents__link"
-      = link_to "FURIMA利用規約","/", class: "un__footer__contents__link"
-      = link_to "特定商取引に関する表記","/", class: "un__footer__contents__link"
-      .un__footer__contents__logo
-        = link_to image_tag("logo.png", size: "130x50"), "/", class: "un__footer__contents__logo__btn"
+  .ur__footer
+    .ur__footer__contents
+      = link_to "プライバシーポリシー","/", class: "ur__footer__contents__link"
+      = link_to "FURIMA利用規約","/", class: "ur__footer__contents__link"
+      = link_to "特定商取引に関する表記","/", class: "ur__footer__contents__link"
+      .ur__footer__contents__logo
+        = link_to image_tag("logo.png", size: "130x50"), "/", class: "ur__footer__contents__logo__btn"
         %p © Mercari, Inc.
