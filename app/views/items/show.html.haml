@@ -57,6 +57,15 @@
                       = "#{@item_duration.name}"
             .is__main__showMain__contents__topContent__itemBox__buyBtn
               = link_to "購入画面へ進む", "/items/#{@item.id}/new_buy"
+
+            .is__main__showMain__contents__topContent__itemBox__editBtn
+              = link_to "商品の編集", "#"
+
+            .is__main__showMain__contents__topContent__itemBox__stayBtn
+              = link_to "出品を一旦停止する", "#"            
+
+            .is__main__showMain__contents__topContent__itemBox__destroyBtn
+              = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: '削除しますか？' }
               
             .is__main__showMain__contents__topContent__itemBox__optionalArea
               %ul

@@ -21,6 +21,15 @@ class ItemsController < ApplicationController
     @n_item = Item.find(params[:id]).next
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    # 一旦root_pathに戻る
+    redirect_to root_path
+  end
+
+
+
   def new
   end
 
