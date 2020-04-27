@@ -58,7 +58,7 @@
         &__form{
           .user_information{
             height: 20px;
-            padding-top: 20px;
+            padding-top: 20px 0;
             h1{
               font-weight: bold;
               font-size: 16px;
@@ -191,23 +191,28 @@
               }
             }
           }
-          .move_next{
+          .address{
+            height: 70px;
+            margin: 15px 0px 5px;
+            h3{
+              line-height: 70px;
+              font-weight: bold;
+              font-size: 16px;
+            }
+          }
+          .actions{
             height:160px;
             text-align: center;
             margin-top: 20px;
             p{
               margin-bottom: 20px;
             }
-            .next_btn{
-              line-height: 80px;
-              width: 343px;
-              height: 50px;
-              padding: 15px 130px;
-              text-decoration: none;
+            input{
+              padding: 10px 110px;
+              border-radius: 6px;
               font-size: 15px;
               color: white;
               background-color: red;
-              bottom: 0px;
             }
           }
         }
