@@ -1,27 +1,27 @@
-.us
-  .us__header
-    .us__header__logo
+.dsn
+  .dsn__header
+    .dsn__header__logo
       = link_to image_tag("logo.png", size: "187x55"), "/"
 
-  .us__main
-    .us__main__header 
+  .dsn__main
+    .dsn__main__header 
       .registration
         %h1.text アカウントをお持ちでない方はこちら
         = link_to "新規会員登録","/users/sign_up", class: "registration__btn"
-    .us__main__contents
-      .us__main__contents__list
-        .us__main__contents__list__form
+    .dsn__main__contents
+      .dsn__main__contents__list
+        .dsn__main__contents__list__form
           %h2.login ログイン 
           %p ※ メールアドレスを入力してください
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field"
             .actions
               = f.submit "Log in", class: "login_btn"
-  .us__footer
-    .us__footer__contents
-      = link_to "プライバシーポリシー","/", class: "us__footer__contents__link"
-      = link_to "FURIMA利用規約","/", class: "us__footer__contents__link"
-      = link_to "特定商取引に関する表記","/", class: "us__footer__contents__link"
-      .us__footer__contents__logo
-        = link_to image_tag("logo.png", size: "130x50"), "/", class: "un__footer__contents__logo__btn"
+  .dsn__footer
+    .dsn__footer__contents
+      = link_to "プライバシーポリシー","/", class: "dsn__footer__contents__link"
+      = link_to "FURIMA利用規約","/", class: "dsn__footer__contents__link"
+      = link_to "特定商取引に関する表記","/", class: "dsn__footer__contents__link"
+      .dsn__footer__contents__logo
+        = link_to image_tag("logo.png", size: "130x50"), "/", class: "dsn__footer__contents__logo__btn"
         %p © Mercari, Inc.
