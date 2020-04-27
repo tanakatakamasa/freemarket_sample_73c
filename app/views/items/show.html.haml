@@ -42,21 +42,21 @@
                   %tr
                     %th 商品の状態
                     %td
-                      = "#{@item.condition}"
+                      = "#{@item_condition.name}"
                   %tr
                     %th 配送料の負担
                     %td 
-                      = "#{@item.delivery_charge}円(送料込み/出品者負担)"
+                      = "#{@item_burden.name}"
                   %tr
                     %th 発送元の地域
                     %td
-                      = link_to "#{@item.original_shipping_address}", "#"
+                      = link_to "#{@item_address.name}", "#"
                   %tr
                     %th 発送日の目安
                     %td
-                      = "#{@item.duration}日で発送"
+                      = "#{@item_duration.name}"
             .is__main__showMain__contents__topContent__itemBox__buyBtn
-              = link_to "購入画面へ進む", "#"
+              = link_to "購入画面へ進む", "/items/#{@item.id}/new_buy"
               
             .is__main__showMain__contents__topContent__itemBox__optionalArea
               %ul
@@ -77,13 +77,13 @@
         %ul.links
           - if @p_item.present?
             %li.p_icon
-              = link_to "/items/#{@item.id - 1}" do
+              = link_to "/items/#{@p_item.id}" do
                 %i.fa.fa-angle-left
                 %span 前の商品
 
           - if @n_item.present?
             %li.n_icon
-              = link_to "/items/#{@item.id + 1}" do
+              = link_to "/items/#{@n_item.id}" do
                 %span 後ろの商品
                 %i.fa.fa-angle-right
                 
@@ -108,5 +108,5 @@
               = link_to "" do
                 %i.fab.fa-pinterest-square.fa-3x
 
-  = render partial: "items/partials/banner"
-  = render partial: "items/partials/footer"
+  = render partial: "partials/banner"
+  = render partial: "partials/footer"
