@@ -13,7 +13,7 @@
         .dsn__main__contents__list__form
           %h2.login ログイン 
           %p ※ メールアドレスを入力してください
-          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field"
             .actions
               = f.submit "Log in", class: "login_btn"
@@ -24,4 +24,4 @@
       = link_to "特定商取引に関する表記","/", class: "dsn__footer__contents__link"
       .dsn__footer__contents__logo
         = link_to image_tag("logo.png", size: "130x50"), "/", class: "dsn__footer__contents__logo__btn"
-        %p © Mercari, Inc.
+        %p © furima, Inc.
