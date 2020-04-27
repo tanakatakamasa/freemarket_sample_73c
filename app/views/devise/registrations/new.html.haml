@@ -15,7 +15,7 @@
           = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
             = render "devise/shared/error_messages", resource: resource
             .user_information
-              %h1 ユーザー情報
+              %h1 ● ユーザー情報
               %br/
             .field
               = f.label :ニックネーム, class:"field__label"
@@ -42,7 +42,7 @@
               %span.require 必須
               = f.password_field :password_digest, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
             .identification
-              %h2 本人確認
+              %h2 ● 本人確認
               %br/
               %ol 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
             .form_group
@@ -65,9 +65,57 @@
               %br/
               .form_birthday__selector
                 = f.date_select :birthday, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 10), default: Date.new(Time.now.year,Time.now.month,Time.now.day), class:"a"
-            .move_next
+            .address
+              %h3 ● 商品送付先住所情報
+            .form_group
+              = f.label :送付先氏名（全角）,class:"field__label"
+              %span.require 必須
+              %br/
+              .form_group__input
+                = f.text_field :last_name, autocomplete: "family_name", placeholder:"例)山田", class:"form_group__input__inf"
+                = f.text_field :first_name, autocomplete: "given_name", placeholder:"例)太郎", class:"form_group__input__inf"
+            .form_group
+              = f.label :送付先氏名カナ（全角）,class:"field__label"
+              %span.require 必須
+              %br/
+              .form_group__input
+                = f.text_field :last_name_kana, autocomplete: "on", placeholder:"例)ヤマダ", class:"form_group__input__inf"
+                = f.text_field :first_name_kana, autocomplete: "on", placeholder:"例)タロウ", class:"form_group__input__inf"
+            .field
+              = f.label :郵便番号, class:"field__label"
+              %span.require 必須
+              %br/
+              = f.text_field :postal_code, autocomplete: "postal_code", placeholder: "例)123-4567", class:"field__input"
+              %br/
+            .field
+              = f.label :都道府県, class:"field__label"
+              %span.require 必須
+              %br/
+              = f.text_field :prefecture, autocomplete: "address-level1", placeholder: "例)東京都", class:"field__input"
+              %br/
+            .field
+              = f.label :市区町村, class:"field__label"
+              %span.require 必須
+              %br/
+              = f.text_field :city, autocomplete: "address-level2", placeholder: "渋谷区", class:"field__input"
+              %br/
+            .field
+              = f.label :番地, class:"field__label"
+              %span.require 必須
+              %br/
+              = f.text_field :street, autocomplete: "street-address", placeholder: "道玄坂2丁目23-12", class:"field__input"
+              %br/
+            .field
+              = f.label :マンション名・ビル名・部屋番号, class:"field__label"
+              = f.text_field :apartment, autocomplete: "address-line1", placeholder: "※任意", class:"field__input"
+              %br/
+            .field
+              = f.label :お届け先電話番号, class:"field__label"
+              = f.text_field :phone_number, autocomplete: "off", placeholder: "※任意", class:"field__input"
+              %br/
+            .actions
               %P ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
-              = link_to "登録する","/", class: "next_btn"
+              = f.submit "登録する"
   .drn__footer
     .drn__footer__contents
       = link_to "プライバシーポリシー","/", class: "drn__footer__contents__link"

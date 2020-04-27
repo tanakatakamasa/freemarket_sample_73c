@@ -12,9 +12,10 @@
       .dsn__main__contents__list
         .dsn__main__contents__list__form
           %h2.login ログイン 
-          %p ※ メールアドレスを入力してください
+          %p ※ メールアドレス / パスワード を入力して下さい
           = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field"
+            = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "field"
             .actions
               = f.submit "Log in", class: "login_btn"
   .dsn__footer
