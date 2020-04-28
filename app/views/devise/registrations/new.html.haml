@@ -31,16 +31,16 @@
             .field
               = f.label :パスワード, class:"field__label"
               %span.require 必須
-              - if @minimum_password_length
-                %em
-                  (#{@minimum_password_length} characters minimum)
-              %br/
-              = f.password_field :encrypted_password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "field__password"
+              -# - if @minimum_password_length
+              -#   %em
+              -#     (#{@minimum_password_length} characters minimum)
+              -# %br/
+              = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "field__password"
               %p ※ 英字と数字の両方を含めて設定してください
             .field_confirm
               = f.label :パスワード（確認）, class:"field__label"
               %span.require 必須
-              = f.password_field :password_digest, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
+              = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード再入力", class: "field__password"
             .identification
               %h2 ● 本人確認
               %br/
@@ -72,15 +72,15 @@
               %span.require 必須
               %br/
               .form_group__input
-                = f.text_field :last_name, autocomplete: "family_name", placeholder:"例)山田", class:"form_group__input__inf"
-                = f.text_field :first_name, autocomplete: "given_name", placeholder:"例)太郎", class:"form_group__input__inf"
+                = f.text_field :family_name, autocomplete: "family_name", placeholder:"例)山田", class:"form_group__input__inf"
+                = f.text_field :given_name, autocomplete: "given_name", placeholder:"例)太郎", class:"form_group__input__inf"
             .form_group
               = f.label :送付先氏名カナ（全角）,class:"field__label"
               %span.require 必須
               %br/
               .form_group__input
-                = f.text_field :last_name_kana, autocomplete: "on", placeholder:"例)ヤマダ", class:"form_group__input__inf"
-                = f.text_field :first_name_kana, autocomplete: "on", placeholder:"例)タロウ", class:"form_group__input__inf"
+                = f.text_field :family_name_kana, autocomplete: "on", placeholder:"例)ヤマダ", class:"form_group__input__inf"
+                = f.text_field :given_name_kana, autocomplete: "on", placeholder:"例)タロウ", class:"form_group__input__inf"
             .field
               = f.label :郵便番号, class:"field__label"
               %span.require 必須
