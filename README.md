@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-<img width="904" alt="Screen Shot 2020-04-29 at 00 59 31" src="https://user-images.githubusercontent.com/62594253/80509689-b3b00f80-89b4-11ea-8234-ff6a66984903.png">
+![DB設計](https://user-images.githubusercontent.com/62594253/80512101-f8897580-89b7-11ea-9714-9aa2f90067cf.jpeg)
 
 ## usersテーブル
 |Column|Type|Options|
