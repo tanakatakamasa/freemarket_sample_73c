@@ -6,50 +6,66 @@
       .is__main__showMain__contents
         .is__main__showMain__contents__topContent
           .is__main__showMain__contents__topContent__itemBox
-            %h2.is__main__showMain__contents__topContent__itemBox__name item1
+            %h2.is__main__showMain__contents__topContent__itemBox__name
+              = "#{@item.name}"
             .is__main__showMain__contents__topContent__itemBox__body
-              %ul
-                %li
-                  %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg")
-                  %ul
-                    %li
-                      %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg" width="75" height="75")
-                    %li
-                      %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg" width="75" height="75")
-                    %li
-                      %img(src="https://suitselect.fs-storage.jp/fs2cabinet/S20/S20SA-06_NV/S20SA-06_NV-m-01-dl.jpg" width="75" height="75")
+
+              %ul.mainImage
+                - @images.each_with_index do |i, num|
+                  %li{class: "image#{1++num}"}
+                    %img(src="#{i.item_image}" width="350" height="350")
+              
+              %ul.thumbImage
+                - @images.each_with_index do |i, num|
+                  %li{class: "thumb#{1++num}"}
+                    %img(src="#{i.item_image}" width="75" height="75")
+
             .is__main__showMain__contents__topContent__itemBox__price
-              %span ¥1500
+              %span 
+                = "#{@item.price}円"
               .is__main__showMain__contents__topContent__itemBox__price-detail
                 %span (税込)
                 %span 送料込み
             .is__main__showMain__contents__topContent__itemBox__detail
-              あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこかきくけこ
+              = "#{@item.discription}"
             .is__main__showMain__contents__topContent__itemBox__table
               %table
                 %tBody
                   %tr
                     %th 出品者
-                    %td hoge
+                    %td 
+                      = "#{@item.user.nickname}"
                   %tr
                     %th カテゴリー
                     %td 
-                      = link_to "ネクタイ", "#"
+                      = link_to "#{@item.category.name}", "#"
                   %tr
                     %th 商品の状態
-                    %td 未使用に近い
+                    %td
+                      = "#{@item_condition.name}"
                   %tr
                     %th 配送料の負担
-                    %td 送料込み（出品者負担）
+                    %td 
+                      = "#{@item_burden.name}"
                   %tr
                     %th 発送元の地域
                     %td
-                      = link_to "千葉県", "#"
+                      = link_to "#{@item_address.name}", "#"
                   %tr
                     %th 発送日の目安
-                    %td 4-7日で発送
+                    %td
+                      = "#{@item_duration.name}"
             .is__main__showMain__contents__topContent__itemBox__buyBtn
-              = link_to "購入画面へ進む", "#"
+              = link_to "購入画面へ進む", "/items/#{@item.id}/new_buy"
+
+            .is__main__showMain__contents__topContent__itemBox__editBtn
+              = link_to "商品の編集", "#"
+
+            .is__main__showMain__contents__topContent__itemBox__stayBtn
+              = link_to "出品を一旦停止する", "#"            
+
+            .is__main__showMain__contents__topContent__itemBox__destroyBtn
+              = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: '削除しますか？' }
               
             .is__main__showMain__contents__topContent__itemBox__optionalArea
               %ul
@@ -68,19 +84,22 @@
 
         
         %ul.links
-          %li
-            = link_to "#" do
-              %i.fa.fa-angle-left
-              %span 前の商品
-          %li
-            = link_to "#" do
-              %span 後ろの商品
-              %i.fa.fa-angle-right
+          - if @p_item.present?
+            %li.p_icon
+              = link_to "/items/#{@p_item.id}" do
+                %i.fa.fa-angle-left
+                %span 前の商品
+
+          - if @n_item.present?
+            %li.n_icon
+              = link_to "/items/#{@n_item.id}" do
+                %span 後ろの商品
+                %i.fa.fa-angle-right
                 
 
         .is__main__showMain__contents__relatedItems
           = link_to "#" do
-            ネクタイをもっと見る
+            = "#{@item.category.name}をもっと見る"
           .is__main__showMain__contents__relatedItems__productLists
 
         .container__social-media
@@ -98,3 +117,5 @@
               = link_to "" do
                 %i.fab.fa-pinterest-square.fa-3x
 
+  = render partial: "partials/banner"
+  = render partial: "partials/footer"
