@@ -5,6 +5,10 @@ class Address < ApplicationRecord
   belongs_to :user
 
   with_options presence: true do
+    validates :last_name
+    validates :last_name_kana
+    validates :first_name
+    validates :first_name_kana
     validates :postal_code
     validates :prefecture_id
     validates :city
