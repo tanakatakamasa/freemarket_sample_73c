@@ -1,18 +1,45 @@
 .in
   = render partial: "partials/header"
   .in__main
-    = form_with url: "#" do  |f|
+    = form_with model: @item do |f|
       .in__main__image
         .in__main__image__title 
           出品画像 
           %span.required 必須
         .in__main__image__text 最大5枚までアップロードできます
-        = f.label :product_image do
-          .in__main__image__file
-            = f.file_field :product_image, class: "hide-file"
-            .in__main__image__file__content
-              %i.fa.fa-camera
-              %p.image-text クリックしてファイルをアップロード
+        -# = f.label :item__image do
+        -# .in__main__image__file
+
+        .image-wrapper__image
+          .post__drop__box__container
+            .prev-content
+            .label-content
+              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0" ,type: "file"}
+                %pre.label-box__text-visible クリックしてファイルをアップロード
+            .hidden-content
+              = f.fields_for :images do |i|
+                - for num in 0..4 do
+                  = i.file_field :item_image
+
+        -# #image-box
+        -#   #previews
+        -#     - if @item.persisted?
+        -#       - @item.images.each_with_index do |image, i|
+        -#         = image_tag image.src.url, data: {index: i}, width: "100", height: "100"
+        -#   = f.fields_for :images do |i|
+        -#     .js-file_group{tabindex:"0"}
+        -#       = i.file_field :item_image, class:  "js-file"
+        -#       %span.js-remove 削除
+        -#     - if @item.persisted?
+        -#       = image.check_box :_destroy, data: { index: image.index }, class: "hidden-destroy"
+        -#     - if @item.persisted?
+        -#       .js-file_group{tabindex: "${@item.images.count}"}
+        -#         = file_field_tag :item_image, name: "item[images_attributes][#{@item.images.count}][item_image]", class: "js-file"
+        -#         .js-remove 削除
+
+          -# .in__main__image__file__content
+          -#   %i.fa.fa-camera
+          -#   %p.image-text クリックしてファイルをアップロード
       .in__main__discription
         .in__main__discription__name
           商品名
@@ -28,7 +55,7 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-        = f.select :category_id, [["メンズ","メンズ"],["レディース","レディース"]],{prompt: "選択してください"},{ class: "in__main__show__categoryForm"}
+        = f.select :category_id, [[1,1],[1,1]],{prompt: "選択してください"},{ class: "in__main__show__categoryForm"}
         .in__main__show__condition
           商品の状態
           %span.required 必須
