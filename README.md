@@ -80,7 +80,7 @@ belongs_to :user
 |prefecture_id|integer|null: false|
 |duration_id|integer|null: false|
 |seller_id|references|foreign_key: { to_table: :users }, null: false|
-|buyer_id|references|foreign_key: { to_table: :users }, null: false|
+|buyer_id|references|foreign_key: { to_table: :users }|
 |category_id|references|foreign_key: true, null: false|
 ### Association
 belongs_to :buyer, class_name: 'User'
