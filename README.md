@@ -100,6 +100,6 @@ belongs_to :item
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|index: true, null: false|
+|ancestry|string|index: true, null: false, default: false|
 ### Association
 has_many :items
