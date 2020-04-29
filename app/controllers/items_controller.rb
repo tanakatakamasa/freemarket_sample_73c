@@ -38,6 +38,15 @@ class ItemsController < ApplicationController
     # akama/itemモデルに紐づくimageモデルのインスタンス生成
     @item.images.new
 
+
+    @category_parent_array = ["選択してください"]  
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+  
+ 
+
    
 
   end

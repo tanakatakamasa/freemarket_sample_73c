@@ -55,7 +55,7 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-        = f.select :category_id, [[1,1],[1,1]],{prompt: "選択してください"},{ class: "in__main__show__categoryForm"}
+        = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm"}
         .in__main__show__condition
           商品の状態
           %span.required 必須
