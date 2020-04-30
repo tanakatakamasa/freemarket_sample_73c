@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   has_one :address, dependent: :destroy
   has_one :card, dependent: :destroy
-  has_many :buyer_items, class_name: 'Item', :foreign_key => 'buyer_id', dependent: :destroy
-  has_many :seller_items, class_name: 'Item', :foreign_key => 'seller_id', dependent: :destroy
+  has_many :buyer_items, :foreign_key => 'buyer_id', class_name: 'Items'
+  has_many :seller_items, :foreign_key => 'seller_id', class_name: 'Items'
 
   validates :email, presence: true, uniqueness: true
 

@@ -68,10 +68,6 @@ class ItemsController < ApplicationController
   end
 
 
-  def new_buy
-    item = Item.find(params[:id])
-  end
-
   private
 
   # def set_item
