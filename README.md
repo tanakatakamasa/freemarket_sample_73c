@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-<img width="784" alt="Screen Shot 2020-04-29 at 19 24 32" src="https://user-images.githubusercontent.com/62594253/80586035-4a310f00-8a4f-11ea-8c6e-f3ca20c8e8f3.png">
+<img width="659" alt="Screen Shot 2020-04-30 at 08 48 27" src="https://user-images.githubusercontent.com/62594253/80657733-62407700-8abf-11ea-8715-aca57069101c.png">
 
 ## usersテーブル
 |Column|Type|Options|
@@ -80,7 +80,7 @@ belongs_to :user
 |prefecture_id|integer|null: false|
 |duration_id|integer|null: false|
 |seller_id|references|foreign_key: { to_table: :users }, null: false|
-|buyer_id|references|foreign_key: { to_table: :users }, null: false|
+|buyer_id|references|foreign_key: { to_table: :users }|
 |category_id|references|foreign_key: true, null: false|
 ### Association
 belongs_to :buyer, class_name: 'User'
