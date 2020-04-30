@@ -69,6 +69,7 @@ class ItemsController < ApplicationController
 
 
   def new_buy
+    item = Item.find(params[:id])
   end
 
   private
