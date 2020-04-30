@@ -7,7 +7,7 @@
       .pn__main-container__purchase-details__item__inner
         .pn__main-container__purchase-details__item__inner__product
           %h3.pn__main-container__purchase-details__item__inner__product__image
-            =image_tag @item.images[0].item_image,class:"buy-image", size: "75x75"
+            = image_tag "#{@item.images[0].item_image}", class:"buy-image", size: "75x75"
           %p.pn__main-container__purchase-details__item__inner__product__name
             商品名
             %br

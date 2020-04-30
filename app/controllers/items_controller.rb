@@ -52,9 +52,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create!(item_params)
+    Item.create(item_params)
     redirect_to root_path
-    # binding.pry
   end
 
   def edit
@@ -68,9 +67,6 @@ class ItemsController < ApplicationController
   end
 
 
-  def new_buy
-    item = Item.find(params[:id])
-  end
 
   private
 
