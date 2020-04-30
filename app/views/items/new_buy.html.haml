@@ -7,14 +7,14 @@
       .pn__main-container__purchase-details__item__inner
         .pn__main-container__purchase-details__item__inner__product
           %h3.pn__main-container__purchase-details__item__inner__product__image
-            = image_tag "material/pict/pict-reason-02.jpg", size: "75x75"
+            =image_tag @item.images[0].item_image,class:"buy-image", size: "75x75"
           %p.pn__main-container__purchase-details__item__inner__product__name
             商品名
             %br
-            スマホ
+              = @item.name
         %form.pn__main-container__purchase-details__item__inner__purchase-details
           %p.pn__main-container__purchase-details__item__inner__purchase-details__price
-            ¥1500
+            = @item.price
             %span.pn__main-container__purchase-details__item__inner__purchase-details__price__shipping-fee
               送料込み
           
@@ -24,7 +24,7 @@
                 支払い金額
               .pn__main-container__purchase-details__item__inner__purchase-details__buy-price__box__amount
                 %span
-                ¥1500
+                  = @item.price
           %ul.pn__main-container__purchase-details__item__inner__purchase-details__use-points
             %li.pn__main-container__purchase-details__item__inner__purchase-details__use-points__top
               .pn__main-container__purchase-details__item__inner__purchase-details__use-points__top__title
