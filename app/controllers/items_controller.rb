@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   # before_action :set_params, only: :create
 
-  def confirmation
+  def confirm
     @item = Item.find(params[:id])
   end
 
