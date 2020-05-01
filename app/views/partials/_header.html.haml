@@ -49,9 +49,9 @@
       - if user_signed_in?
         %ul.ii__pcHeader__headerInner__nav__listRight
           %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--mypage
-          = link_to "マイページ", "/users/#{current_user.id}"
+            = link_to "マイページ", "/users/#{current_user.id}"
           %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--logout
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
       - else
         %ul.ii__pcHeader__headerInner__nav__listRight
           %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--login

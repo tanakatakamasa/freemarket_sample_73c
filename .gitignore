@@ -27,3 +27,6 @@
 /config/master.key
 
 .DS_Store
+
+# 秘密鍵をGithubにコミットしてしまうとAPIキーを世に公開してしまうので、.gitignoreに.envを記述
+/.env
