@@ -66,6 +66,6 @@
     = link_to method: :post,class: "submit-btn submit-btn-red" do
       %li.pn__main-container__purchase-details__item__inner__purchase-details__purchase-button__box
         購入する
-    = form_with url: purchase_items_path do
+    = form_tag(action: :pay, method: :post) do
       %script.payjp-button{"data-key" => "pk_test_4b1377c49c676a603e23dbc4", :src => "https://checkout.pay.jp", :type => "text/javascript"}
   = render partial: "partials/footer"
