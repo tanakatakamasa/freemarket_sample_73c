@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   # before_action :set_params, only: :create
 
   def index
+    @items = Item.order('created_at DESC').limit(3)
+    @images = Image.all
   end
 
   def show
@@ -52,9 +54,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create!(item_params)
+    Item.create(item_params)
     redirect_to root_path
-    # binding.pry
   end
 
   def edit
