@@ -8,26 +8,33 @@ document.addEventListener(
       //カード情報生成
       const card = {
         number: document.getElementById("card_number").value,
-        cvc: document.getElementById("cvc").value,
         exp_month: document.getElementById("exp_month").value,
-        exp_year: document.getElementById("exp_year").value
+        exp_year: document.getElementById("exp_year").value,
+        cvc: document.getElementById("cvc").value
       }; //入力されたデータを取得します。
 
-      //トークン生成
+      //Payjp.createTokenというメソッドを使ってトークン生成、まだpayjpへは送らず生成だけ
       Payjp.createToken(card, (status, response) => {
+
         if (status === 200) { //成功した場合
           $("#card_number").removeAttr("name");
-          $("#cvc").removeAttr("name");
           $("#exp_month").removeAttr("name");
-          $("#exp_year").removeAttr("name"); //カード情報を自分のサーバにpostせず削除します
+          $("#exp_year").removeAttr("name"); 
+          $("#cvc").removeAttr("name"); //法律上カード情報を自分のサーバにpostしてはいけないのでここで削除しまいます
+
+          // formにinput要素をappendして、name属性にトークンのキー名payjp-tokenを指定します。
+          // これにより生成したトークンをsubmitでpayjp-tokenとしてばして、createアクションでを使います
           $("#card_token").append(
             $('<input type="hidden" name="payjp-token">').val(response.id)
           ); //トークンを送信できるように隠しタグを生成
+          // <input>タグのtype属性でtype="hidden"を指定すると、 ブラウザ上に表示されない非表示データを送信することができます。 
+
           document.inputForm.submit();
           alert("登録が完了しました"); //確認用
         } else {
           alert("カード情報が正しくありません。"); //確認用
         }
+
       });
     });
   },false);

@@ -15,80 +15,14 @@
           %span.expire-text 月
           %br
         .cards-expire__wrap
-          = f.select :exp_year, [["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]],{} , class: 'input-expire'
+          = f.select :exp_year, [["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029], ["30", 2030]],{} , class: 'input-expire'
           %span.expire-text 年
       .cards-expire
         = f.label :セキュリティコード, class: 'label'
         %span 必須
         = f.text_field :cvc, type: 'text', class: 'input-number', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4"
+
+        -# このtoken_submitを押すと、createアクションにいく前にJSが発火
+        -# 上の細かい情報は、JS内でPayjpのメソッドを使ってpayjp-tokenという名のトークンにJSで変換され、隠しタグとして帰ってくる、そのトークンが実際にsubmitでcreateアクションに飛ぶ
       .content-bottom#card_token
         = f.submit '追加する', class: 'content-bottom--add-btn', id: 'token_submit'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--# -# = render 'shared/main-header'
--# .container-fluid
--#   .row.py-5.w-100
--#     -# = render 'shared/mypage-side'
--#     .mypage-main.col-9
--#       %h2.header_title
--#         支払い方法
--#       .single-container
--#         .rgs-main__section
-
--#           = form_with url:cards_path, method: :post, html: { name: "inputForm" },class:"form" do |f|
--#             .form__upper
--#               .form__upper__group
--#                 = f.label :カード番号
--#                 %span.form-require 必須
--#                 = f.text_field :card_number, name: "card_number", id:"card_number", type: "text", placeholder: '半角数字のみ', class: 'input-default', maxlength: "16"
--#                 %ol
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#                   %li
--#                     %object{type: "image", data: "#{asset_path 'material/card_logos/visa.png'}", width:"35", height:"20"}
--#               .form__upper__group.exp
--#                 .name
--#                   = f.label :有効期限
--#                   %span.form-require 必須
--#                 = f.select :exp_year, [["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]], {}, class: 'input-default harf', name: "exp_year", id:"exp_year"
--#                 %span 年
--#                 = f.select :exp_month, [["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{}, class: 'input-default harf', name: "exp_month", id:"exp_month"
--#                 %span 月
--#               .form__upper__group
--#                 = f.label :セキュリティーコード
--#                 %span.form-require 必須
--#                 = f.text_field :cvc, name: "cvc", id:"cvc", class:"cvc", type: "text", placeholder: 'カード背面4桁もしくは3桁の番号', class: 'input-default', maxlength: "16"
--#               .form__upper__group
--#                 %p.about
--#                   -# = fa_icon 'question-circle'
--#                   %span
--#                   = link_to 'カード裏面の番号とは？', root_path, class:'about__registered'
--#               .form__upper__group
--#                 = f.submit '次へ進む', class: 'btn-default', id: "charge-form"
-
--#         .payment-explain
--#           -# = fa_icon 'chevron-right', class:"arrows"
--#           = link_to '支払い方法について', '#'

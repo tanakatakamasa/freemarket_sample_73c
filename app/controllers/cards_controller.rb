@@ -8,18 +8,16 @@ class CardsController < ApplicationController
   end
 
   def create #PayjpとCardのデータベースを作成
-    Payjp.api_key = 'sk_test_3591fd499bdda0a8caa16d61'
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
 
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
       # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
       customer = Payjp::Customer.create(
-        description: 'test', # 無くてもOK。PAY.JPの顧客情報に表示する概要です。
-        email: current_user.email,
         card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐付けて永久保存します。
-        metadata: {user_id: current_user.id} # 無くてもOK。
       )
+      # ここでpayjpのトークンをデータベースの型に合わせて保存します
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "index"
@@ -32,11 +30,15 @@ class CardsController < ApplicationController
 
   def index #CardのデータをPayjpに送って情報を取り出す
     if @card.present?
-      Payjp.api_key = "sk_test_3591fd499bdda0a8caa16d61"
+      # 登録している場合,PAY.JPからカード情報を取得する
+      # PAY.JPの秘密鍵をセットする。
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+            # PAY.JPから顧客情報を取得する。
       customer = Payjp::Customer.retrieve(@card.customer_id)
+            # PAY.JPの顧客情報から、デフォルトで使うクレジットカードの情報を取得する。
       @card_information = customer.cards.retrieve(@card.card_id)
 
-      # 《＋α》 登録しているカード会社のブランドアイコンを表示するためのコードです。---------
+      # クレジットカード会社を取得し、カード会社の画像をviewに表示させるため、ここで先にファイルを指定する。
       @card_brand = @card_information.brand      
       case @card_brand
       when "Visa"
@@ -52,12 +54,11 @@ class CardsController < ApplicationController
       when "Discover"
         @card_src = "material/logo_cards/visa.png"
       end
-      # ---------------------------------------------------------------
     end
   end
 
   def destroy #PayjpとCardのデータベースを削除
-    Payjp.api_key = "sk_test_3591fd499bdda0a8caa16d61"
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     if @card.destroy #削除に成功した時にポップアップを表示します。
@@ -68,20 +69,7 @@ class CardsController < ApplicationController
   end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   private
-
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
