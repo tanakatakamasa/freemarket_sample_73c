@@ -20,9 +20,11 @@
  @import "items/show";
  @import "items/confirm";
  @import "devise/registrations/new";
- @import "devise/sessions/new";
  @import "users/show";
  @import "cards/new";
 
 
 
+ @import "devise/registrations/new_address";
+ @import "devise/registrations/create_address";
+ @import "devise/sessions/new";
