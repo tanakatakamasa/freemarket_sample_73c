@@ -64,7 +64,7 @@
               %span.require 必須
               %br/
               .form_birthday__selector
-                = f.date_select :birthday, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 10), default: Date.new(Time.now.year,Time.now.month,Time.now.day), class:"a"
+                = f.date_select :birthday, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 70), default: Date.new(Time.now.year,Time.now.month,Time.now.day), class:"a"
             .address
               %h3 ● 商品送付先住所情報
             .form_group

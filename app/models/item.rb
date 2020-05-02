@@ -19,6 +19,7 @@ class Item < ApplicationRecord
     validates :name
     validates :price
     validates :discription
+    validates :category_id
     validates :condition_id
     validates :burden_id
     validates :prefecture_id

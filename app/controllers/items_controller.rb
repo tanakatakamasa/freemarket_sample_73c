@@ -31,30 +31,37 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-
-
   def new
     @item = Item.new
     # akama/itemモデルに紐づくimageモデルのインスタンス生成
     @item.images.new
 
-
     @category_parent_array = ["選択してください"]  
-    Category.where(ancestry: nil).each do |parent|
+    Category.where(ancestry: 0).each do |parent|
       @category_parent_array << parent.name
     end
-
-  
- 
-
-   
-
+  end
+  # 以下全て、formatはjsonのみ
+  # 親カテゴリーが選択された後に動くアクション
+  def get_category_children
+    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: 0).children
+  end
+  # 子カテゴリーが選択された後に動くアクション
+  def get_category_grandchildren
+  #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
+
   def create
-    Item.create!(item_params)
-    redirect_to root_path
     # binding.pry
+    @item = Item.create(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -62,9 +69,6 @@ class ItemsController < ApplicationController
 
   def update
     
-  end
-
-  def destroy
   end
 
 
@@ -78,8 +82,7 @@ class ItemsController < ApplicationController
   # end
 
   def item_params
-    params.require(:item).permit(:name, :discription, :category_id, :condition_id, :burden_id, :prefecture_id, :duration_id, :price, images_attributes: [:item_image, :_destroy, :id] ).merge(user_id: current_user.id)
-  end
+    params.require(:item).permit(:name, :discription, :category_id, :condition_id, :burden_id, :prefecture_id, :duration_id, :price, images_attributes: [:item_image, :_destroy, :id] ).merge(seller_id: current_user.id)
+  end 
 
-  
 end

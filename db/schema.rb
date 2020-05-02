@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_071203) do
     t.integer "prefecture_id", null: false
     t.integer "duration_id", null: false
     t.bigint "seller_id", null: false
-    t.bigint "buyer_id", null: false
+    t.bigint "buyer_id"
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -48,14 +48,16 @@
         .in__main__discription__text
           商品の説明
           %span.required 必須
-        = f.text_area :discription, class:  "in__main__discription__form", maxlength: 1000, placeholder: "商品の説明(必須 1,000文字以内)\n （色、素材、重さ、定価、注意点など）\n\n例） 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+        = f.text_area :discription, class: "in__main__discription__form", maxlength: 1000, placeholder: "商品の説明(必須 1,000文字以内)\n （色、素材、重さ、定価、注意点など）\n\n例） 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
       .in__main__show
         .in__main__show__title
           商品の詳細
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-        = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm"}
+          -# .in__main__show__categoryBox
+          = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+
         .in__main__show__condition
           商品の状態
           %span.required 必須
