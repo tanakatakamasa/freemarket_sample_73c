@@ -55,7 +55,6 @@ class ItemsController < ApplicationController
 
 
   def create
-    # binding.pry
     @item = Item.create(item_params)
     if @item.save
       redirect_to root_path
@@ -72,8 +71,6 @@ class ItemsController < ApplicationController
   end
 
 
-  def new_buy
-  end
 
   private
 

@@ -6,10 +6,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :duration
 
-  belongs_to :buyer, class_name: 'User', optional: true
-  # :foreign_key => 'buyer_id'
-  belongs_to :seller, class_name: 'User', optional: true
-  # :foreign_key => 'buyer_id'
+  belongs_to :buyer, class_name: 'User'
+  # , :foreign_key => 'buyer_id'
+
+  belongs_to :seller, class_name: 'User'
+  # , :foreign_key => 'seller_id'
+
   belongs_to :category, optional: true
 
   has_many :images, dependent: :destroy

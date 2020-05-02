@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :users
   resources :categories
+  resources :cards
   resources :items do
     member do
       get "new_buy"

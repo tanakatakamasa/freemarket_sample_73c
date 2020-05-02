@@ -1,5 +1,7 @@
 .ii__pcHeader {
   padding: 0 60px;
+  background: #FFF;
+  padding-bottom: 10px;
   &__headerInner {
     max-width: 1040px;
     width: 100%;
@@ -53,7 +55,6 @@
     &__nav {
       font-size: 14px;
       display: flex;
-      margin-bottom: 10px;
       ul {
         list-style: none;
       }
