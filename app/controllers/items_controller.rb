@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   def index
   end
 
+  
   def show
     @item = Item.find(params[:id])
     # 商品画像を取得
@@ -24,12 +25,14 @@ class ItemsController < ApplicationController
     @n_item = Item.find(params[:id]).next
   end
 
+
   def destroy
     item = Item.find(params[:id])
     item.destroy
     # 一旦root_pathに戻る
     redirect_to root_path
   end
+
 
   def new
     @item = Item.new
