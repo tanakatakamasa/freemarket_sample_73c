@@ -2,7 +2,7 @@ class Address < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
-  belongs_to :user
+  belongs_to :user, optional: true
 
   with_options presence: true do
     validates :last_name
