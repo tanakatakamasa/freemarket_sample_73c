@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   # before_action :set_params, only: :create
 
   def index
+    @items = Item.order('created_at DESC').limit(3)
+    @images = Image.all
   end
 
   

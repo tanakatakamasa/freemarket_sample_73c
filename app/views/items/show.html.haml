@@ -55,6 +55,8 @@
                     %th 発送日の目安
                     %td
                       = "#{@item_duration.name}"
+            .is__main__showMain__contents__topContent__itemBox__buyBtn
+              = link_to "購入画面へ進む", "/items/#{@item.id}/purchase"
 
             - if @item.buyer_id.present?
               .is__main__showMain__contents__topContent__itemBox__soldout

@@ -14,5 +14,5 @@
 //= require jquery_ujs
 
 //= require activestorage
-//= require turbolinks
+//=xxx require turbolinks ***turbolinksがJSに悪さしてるので消してます
 //= require_tree .

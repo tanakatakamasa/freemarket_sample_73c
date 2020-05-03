@@ -38,6 +38,7 @@
       }
     }
   }
+  
   &__main{
     background-color: white;
     font-size: 14px;
@@ -55,6 +56,17 @@
       &__list{
         width: 350px;
         margin: 0 auto;
+        #error_explanation{
+          width :500px;
+          margin: 10px 0px 30px;
+          color: red;
+          h2{
+            padding-bottom: 10px;
+          }
+          li{
+            padding: 5px 0px 5px 10px;
+          }
+        }
         &__form{
           .user_information{
             height: 20px;
@@ -119,9 +131,8 @@
               color:white;
               background-color: red;
               font-size: 12px;
-              }
             }
-
+          }
           .identification{
             height: 150px;
             padding-top: 20px;
@@ -147,6 +158,10 @@
             &__input{
               display: flex;
               margin-bottom: 24px;
+              .field_with_errors {
+                display: contents;
+                // もしくは diplay: inline;
+              }  
               &__inf{
                 width: 50%;
                 height: 48px;
@@ -191,16 +206,7 @@
               }
             }
           }
-          .address{
-            height: 70px;
-            margin: 15px 0px 5px;
-            h3{
-              line-height: 70px;
-              font-weight: bold;
-              font-size: 16px;
-            }
-          }
-          .actions{
+          .action{
             height:160px;
             text-align: center;
             margin-top: 20px;

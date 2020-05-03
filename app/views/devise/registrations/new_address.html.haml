@@ -1,0 +1,78 @@
+.drna
+  .drna__header
+    .drna__header__box
+      .drna__header__box__left
+        = link_to image_tag("logo.png", size: "185x49"), "/"
+      .drna__header__box__right
+        .drna__header__box__right__login
+          = link_to "ログイン画面へ","/users/sign_in", class: "drna__header__box__right__login__btn"
+  .drna__main
+    .drna__main__header 
+      アカウント情報入力
+    .drna__main__contents
+      .drna__main__contents__list
+        .drna__main__contents__list__form
+          = form_with model: @address, class: "address", local: true do |f|
+            = render "devise/shared/error_messages", resource: @address
+            .address_information
+              %h1 ●  商品送付先住所情報
+              %br/
+            .form_group
+              = f.label :お名前（全角）,class:"form_group__label"
+              %span.require 必須
+              %br/
+              .form_group__input
+                = f.text_field :last_name, autocomplete: "last_name", placeholder:"例)山田", class:"form_group__input__inf"
+                = f.text_field :first_name, autocomplete: "first_name", placeholder:"例)太郎", class:"form_group__input__inf"
+            .form_group
+              = f.label :送付先氏名カナ（全角）,class:"form_group__label"
+              %span.require 必須
+              %br/
+              .form_group__input
+                = f.text_field :last_name_kana, autocomplete: "on", placeholder:"例)ヤマダ", class:"form_group__input__inf"
+                = f.text_field :first_name_kana, autocomplete: "on", placeholder:"例)タロウ", class:"form_group__input__inf"
+            
+            .form_group
+              = f.label :郵便番号, class:"form_group__label"
+              %span.require 必須
+              %br/
+              = f.text_field :postal_code, autocomplete: "postal_code", placeholder: "例)123-4567", class:"form_group__text"
+              %br/
+              
+            .form_group
+              = f.label :都道府県, class:"form_group__label"
+              %span.require 必須
+              %br/
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,{prompt: "選択してください"},{ class:"form_group__select"}
+              %br/
+            .form_group
+              = f.label :市区町村, class:"form_group__label"
+              %span.require 必須
+              %br/
+              = f.text_field :city, autocomplete: "address-level2", placeholder: "渋谷区", class:"form_group__text"
+              %br/
+            .form_group
+              = f.label :番地, class:"form_group__label"
+              %span.require 必須
+              %br/
+              = f.text_field :street, autocomplete: "street-address", placeholder: "道玄坂2丁目23-12", class:"form_group__text"
+              %br/
+            .form_group
+              = f.label :マンション名・ビル名・部屋番号, class:"form_group__label"
+              = f.text_field :apartment, autocomplete: "address-line1", placeholder: "※任意", class:"form_group__text"
+              %br/
+            .form_group
+              = f.label :お届け先電話番号, class:"form_group__label"
+              = f.text_field :phone_number, autocomplete: "off", placeholder: "※任意", class:"form_group__text"
+              %br/
+            .actions
+              = f.submit "登録する"
+  .drna__footer
+    .drna__footer__contents
+      = link_to "プライバシーポリシー","/", class: "drna__footer__contents__link"
+      = link_to "FURIMA利用規約","/", class: "drna__footer__contents__link"
+      = link_to "特定商取引に関する表記","/", class: "drna__footer__contents__link"
+      .drn__footer__contents__logo
+        = link_to image_tag("logo.png", size: "130x50"), "/", class: "drna__footer__contents__logo__btn"
+        %p © furima, Inc.
+  
