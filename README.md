@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-![DB設計](https://user-images.githubusercontent.com/62594253/80512101-f8897580-89b7-11ea-9714-9aa2f90067cf.jpeg)
+<img width="659" alt="Screen Shot 2020-04-30 at 08 48 27" src="https://user-images.githubusercontent.com/62594253/80657733-62407700-8abf-11ea-8715-aca57069101c.png">
 
 ## usersテーブル
 |Column|Type|Options|
@@ -80,7 +80,7 @@ belongs_to :user
 |prefecture_id|integer|null: false|
 |duration_id|integer|null: false|
 |seller_id|references|foreign_key: { to_table: :users }, null: false|
-|buyer_id|references|foreign_key: { to_table: :users }, null: false|
+|buyer_id|references|foreign_key: { to_table: :users }|
 |category_id|references|foreign_key: true, null: false|
 ### Association
 belongs_to :buyer, class_name: 'User'
@@ -100,6 +100,6 @@ belongs_to :item
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|index: true, null: false|
+|ancestry|string|index: true, null: false, default: false|
 ### Association
 has_many :items

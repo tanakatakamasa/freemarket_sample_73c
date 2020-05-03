@@ -1,0 +1,51 @@
+.us
+
+  = render partial: "partials/header"
+
+  %main.us__l-container.clearfix
+    .us__l-content
+      %section.us__l-content__mypage-user-icon
+        = link_to "#" do
+          %figure
+            = image_tag "material/icon/member_photo_noimage_thumb.png", height: "60", width: "60"
+          %h2.us__l-content__mypage-user-icon__bold 
+            = @nickname
+          .us__l-content__mypage-user-icon__mypage-number
+            %div
+              評価
+              %span.us__l-content__mypage-user-icon__bold 0
+            %div
+              出品数
+              %span.us__l-content__mypage-user-icon__bold 0
+      %section.us__l-content__mypage-tab-container
+        %h2.us__l-content__mypage-tab-container__mypage-tab-head 購入した商品
+        %ul.us__l-content__mypage-tab-container__mypage-tabs
+          %li.active
+            %h3
+              = link_to "#" do
+                取引中
+          %li
+            %h3
+              = link_to "#" do
+                過去の取引
+        .us__l-content__tab-content
+          %ul.us__l-content__tab-content__mypage-item-list.active
+            %li.us__l-content__tab-content__mypage-item-list__faild.bold 取引中の商品がありません
+          %ul.us__l-content__tab-content__mypage-item-list
+            %li.us__l-content__tab-content__mypage-item-list__faild.bold 過去に取引した商品がありません
+
+    .us__l-side
+      %nav.us__l-side__mypage-nav
+        %ul.us__l-side__mypage-nav__mypage-nav-list
+          %li
+            = link_to "#" do
+              .us__l-side__mypage-nav__mypage-nav-list__item
+                支払い方法
+                %i.fas.fa-angle-right
+          %li
+            = link_to "#" do
+              .us__l-side__mypage-nav__mypage-nav-list__item
+                ログアウト
+                %i.fas.fa-angle-right
+
+  = render partial: "partials/footer"
