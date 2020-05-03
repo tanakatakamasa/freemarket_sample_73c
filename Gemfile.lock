@@ -367,11 +367,8 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
-
-  factory_bot_rails
-
   dotenv-rails
-
+  factory_bot_rails
   fog-aws
   font-awesome-sass
   haml-rails
