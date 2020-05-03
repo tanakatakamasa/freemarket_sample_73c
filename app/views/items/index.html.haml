@@ -90,46 +90,25 @@
           =link_to "#" do
             %h3.ii__main__pickupContainer__productBox__productHead__title 新規投稿商品
         .ii__main__pickupContainer__productBox__productLists
-          .ii__main__pickupContainer__productBox__productLists__productList
-            =link_to "#" do
-              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
-                = image_tag "material/pict/product_sample_pict3.png"
-              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
-                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product3
-                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
-                  %ul
-                    %li 30000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      0
-                  %p (税込)
-          .ii__main__pickupContainer__productBox__productLists__productList
-            =link_to "#" do
-              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
-                = image_tag "material/pict/product_sample_pict2.png"
-              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
-                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product2
-                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
-                  %ul
-                    %li 20000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      0
-                  %p (税込)
-          .ii__main__pickupContainer__productBox__productLists__productList
-            =link_to "#" do
-              %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
-                = image_tag "material/pict/product_sample_pict1.png"
-              .ii__main__pickupContainer__productBox__productLists__productList__productList--body
-                %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name product1
-                .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      0
-                  %p (税込)
-
+          - @items.each do |item|
+            .ii__main__pickupContainer__productBox__productLists__productList
+              = link_to "/item/#{item.id}" do
+                %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
+                  = image_tag @images.find_by(item_id: item.id).item_image.url
+                    -if item.buyer_id.present? 
+                    .items-box_photo__sold
+                      .items-box_photo__sold__inner SOLD
+                .ii__main__pickupContainer__productBox__productLists__productList__productList--body
+                  %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name
+                    %p= "#{item.name}"
+                  .ii__main__pickupContainer__productBox__productLists__productList__productList--body__details
+                    %ul
+                      %li 
+                        = "¥#{item.price}"
+                      %li
+                        %i.fa.fa-star.likeIcon
+                        0
+                    %p (税込)
     %section.ii__main__pickupContainer
       %h2.ii__main__pickupContainer__head ピックアップブランド
       .ii__main__pickupContainer__productBox
