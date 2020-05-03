@@ -55,7 +55,7 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-          -# .in__main__show__categoryBox
+          .in__main__show__categoryBox
           = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
 
         .in__main__show__condition

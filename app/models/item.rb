@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :duration
 
-  belongs_to :buyer, class_name: 'User'
+  belongs_to :buyer, class_name: 'User', optional: true
   # , :foreign_key => 'buyer_id'
 
   belongs_to :seller, class_name: 'User'
