@@ -7,39 +7,35 @@
           出品画像 
           %span.required 必須
         .in__main__image__text 最大5枚までアップロードできます
-        -# = f.label :item__image do
-        -# .in__main__image__file
+        #image-box
+          #previews
+            - if @item.persisted?
+              - @item.images.each_with_index do |image, i|
+                = image_tag image.item_index.url, data: { index: i }, width: "100", height: '100'
+          = f.fields_for :images do |image|
+            .js-file_group{"data-index" => "#{image.index}"}
+              = image.file_field :item_index, class: 'js-file' 
+              %br/
+              %span.js-remove 削除
+            - if @item.persisted?
+              = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if @item.persisted?
+              .js-file_group{"data-index" => "#{@item.images.count}"}
+                = file_field_tag :item_image, name: "item[images_attributes][#{@item.images.count}][i]", class: 'js-file'
+                .js-remove 削除
 
-        .image-wrapper__image
-          .post__drop__box__container
-            .prev-content
-            .label-content
-              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0" ,type: "file"}
-                %pre.label-box__text-visible クリックしてファイルをアップロード
-            .hidden-content
-              = f.fields_for :images do |i|
-                - for num in 0..4 do
-                  = i.file_field :item_image
 
-        -# #image-box
-        -#   #previews
-        -#     - if @item.persisted?
-        -#       - @item.images.each_with_index do |image, i|
-        -#         = image_tag image.src.url, data: {index: i}, width: "100", height: "100"
-        -#   = f.fields_for :images do |i|
-        -#     .js-file_group{tabindex:"0"}
-        -#       = i.file_field :item_image, class:  "js-file"
-        -#       %span.js-remove 削除
-        -#     - if @item.persisted?
-        -#       = image.check_box :_destroy, data: { index: image.index }, class: "hidden-destroy"
-        -#     - if @item.persisted?
-        -#       .js-file_group{tabindex: "${@item.images.count}"}
-        -#         = file_field_tag :item_image, name: "item[images_attributes][#{@item.images.count}][item_image]", class: "js-file"
-        -#         .js-remove 削除
+        -# .image-wrapper__image
+        -#   .post__drop__box__container
+        -#     .prev-content
+        -#     .label-content
+        -#       %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0" ,type: "file"}
+        -#         %pre.label-box__text-visible クリックしてファイルをアップロード
+        -#     .hidden-content
+        -#       = f.fields_for :images do |i|
+        -#         - for num in 0..4 do
+        -#           = i.file_field :item_image
 
-          -# .in__main__image__file__content
-          -#   %i.fa.fa-camera
-          -#   %p.image-text クリックしてファイルをアップロード
       .in__main__discription
         .in__main__discription__name
           商品名
