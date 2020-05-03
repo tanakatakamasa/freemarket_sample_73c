@@ -13,15 +13,22 @@
  @import "partials/header";
  @import "partials/banner";
  @import "partials/footer";
+ @import "partials/mypage_side";
 
 // Main
  @import "items/index";
  @import "items/new";
  @import "items/show";
- @import "items/new_buy";
- @import "devise/registrations/new";
+
+ @import "purchase/index";
+
+ @import "users/show";
+ @import "users/sign_out";
+
+ @import "cards/index";
+ @import "cards/new";
 
  @import "devise/registrations/new_address";
  @import "devise/registrations/create_address";
+ @import "devise/registrations/new";
  @import "devise/sessions/new";
- @import "users/show";

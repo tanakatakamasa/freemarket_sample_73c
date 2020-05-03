@@ -84,9 +84,6 @@ gem 'haml-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'active_hash'
-
-gem 'ancestry'
-gem 'rspec-rails'
 # カテゴリー分けのためのgem
 gem 'ancestry'
 # PAY.JPのgem
@@ -94,3 +91,4 @@ gem 'payjp'
 # 環境変数を簡単に定義できるENVファイルを対応させるgem
 gem 'dotenv-rails'
 
+gem 'rspec-rails'

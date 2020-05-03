@@ -95,6 +95,7 @@
       margin: 40px 0 0;
       padding: 24px 12.5% 0;
       border-top: 1px solid $global-back-color;
+      background-color: $normal-white;
       &__inner{
         max-width: 320px;
         margin: 0 auto;
@@ -125,6 +126,7 @@
       margin: 40px 0 0;
       padding: 40px 12.5%;
       border-top: 1px solid $global-back-color;
+      background-color: $normal-white;
       &__inner{
         max-width: 320px;
         margin: 0 auto;
@@ -154,4 +156,3 @@
     }
   }
 }
-
