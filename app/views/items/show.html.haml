@@ -55,8 +55,6 @@
                     %th 発送日の目安
                     %td
                       = "#{@item_duration.name}"
-            .is__main__showMain__contents__topContent__itemBox__buyBtn
-              = link_to "購入画面へ進む", "/items/#{@item.id}/purchase"
 
             - if @item.buyer_id.present?
               .is__main__showMain__contents__topContent__itemBox__soldout
@@ -74,7 +72,7 @@
 
               - elsif user_signed_in? && current_user.id != @item.seller.id
                 .is__main__showMain__contents__topContent__itemBox__buyBtn
-                  = link_to "購入画面へ進む", "/items/#{@item.id}/new_buy"
+                  = link_to "購入画面へ進む", "/items/#{@item.id}/purchase"
               - else
                 .is__main__showMain__contents__topContent__itemBox__stayBtn
                   = link_to "購入にはログインが必要です", "/users/sign_in"

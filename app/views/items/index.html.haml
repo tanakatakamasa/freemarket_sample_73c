@@ -92,7 +92,7 @@
         .ii__main__pickupContainer__productBox__productLists
           - @items.each do |item|
             .ii__main__pickupContainer__productBox__productLists__productList
-              = link_to "/item/#{item.id}" do
+              = link_to "/items/#{item.id}" do
                 %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                   = image_tag @images.find_by(item_id: item.id).item_image.url
                     -if item.buyer_id.present? 
