@@ -13,8 +13,11 @@
               %ul.mainImage
                 - @images.each_with_index do |i, num|
                   %li{class: "image#{1++num}"}
-                    %img(src="#{i.item_image.url}" width="350" height="350")
-              
+                    .mainImage_box
+                      %img(src="#{i.item_image.url}" width="350" height="350")
+                        -if @item.buyer_id.present? 
+                          .mainImage__soldOut
+                            .mainImage__soldOut__inner SOLD
               %ul.thumbImage
                 - @images.each_with_index do |i, num|
                   %li{class: "thumb#{1++num}"}
