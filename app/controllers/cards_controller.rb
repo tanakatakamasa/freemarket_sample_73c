@@ -2,22 +2,21 @@ class CardsController < ApplicationController
   require "payjp"
   before_action :set_card
 
-  def new # カードの登録画面。送信ボタンを押すとcreateアクションへ。
+  def new
     card = Card.where(user_id: current_user.id).first
     redirect_to action: "index" if card.present?
   end
 
-  def create #PayjpとCardのデータベースを作成
+  def create #直前のnewアクションでpayjpからトークンとして返ってきたpayjp-tokenを、customer_idとcard_idとしてデータベースへ保管
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
 
     if params['payjp-token'].blank?
       redirect_to action: "new"
-    else
-      # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
+    else #customer_idとcard_idを自分たちのデータベースの型に合わせて保管するためにcustomerという変数へ代入
       customer = Payjp::Customer.create(
-        card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐付けて永久保存します。
+        card: params['payjp-token'],
       )
-      # ここでpayjpのトークンをデータベースの型に合わせて保存します
+      #ここでpayjpのトークンをデータベースの型に合わせて保存
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "index"
@@ -28,46 +27,39 @@ class CardsController < ApplicationController
   end
 
 
-  def index #CardのデータをPayjpに送って情報を取り出す
+  def index
     if @card.present?
-      # 登録している場合,PAY.JPからカード情報を取得する
-      # PAY.JPの秘密鍵をセットする。
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-            # PAY.JPから顧客情報を取得する。
       customer = Payjp::Customer.retrieve(@card.customer_id)
-            # PAY.JPの顧客情報から、デフォルトで使うクレジットカードの情報を取得する。
       @card_information = customer.cards.retrieve(@card.card_id)
-
-      # クレジットカード会社を取得し、カード会社の画像をviewに表示させるため、ここで先にファイルを指定する。
-      @card_brand = @card_information.brand      
+      @card_brand = @card_information.brand
       case @card_brand
       when "Visa"
-        @card_src = "material/logo_cards/visa.png"
-      when "JCB"
-        @card_src = "material/logo_cards/visa.png"
+        @card_src = "visa.png"
       when "MasterCard"
-        @card_src = "material/logo_cards/visa.png"
+        @card_src = "mastercard.png"
+      when "JCB"
+        @card_src = "jcb.png"
       when "American Express"
-        @card_src = "material/logo_cards/visa.png"
+        @card_src = "americanexpress.png"
       when "Diners Club"
-        @card_src = "material/logo_cards/visa.png"
+        @card_src = "dinersclub.png"
       when "Discover"
-        @card_src = "material/logo_cards/visa.png"
+        @card_src = "discover.png"
       end
     end
   end
 
-  def destroy #PayjpとCardのデータベースを削除
+  def destroy
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
-    if @card.destroy #削除に成功した時にポップアップを表示します。
+    if @card.destroy
       redirect_to action: "index", notice: "削除しました"
-    else #削除に失敗した時にアラートを表示します。
+    else
       redirect_to action: "index", alert: "削除できませんでした"
     end
   end
-
 
   private
   def set_card

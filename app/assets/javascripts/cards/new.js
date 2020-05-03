@@ -1,40 +1,38 @@
 document.addEventListener(
   "DOMContentLoaded", (e) => {
-    Payjp.setPublicKey("pk_test_4b1377c49c676a603e23dbc4");
-    const btn = document.getElementById('token_submit'); //IDがtoken_submitの場合に取得されます
-    btn.addEventListener("click", (e) => {　//ボタンが押されたときに作動します
-      e.preventDefault();　//ボタンを一旦無効化します
+    Payjp.setPublicKey("pk_test_4b1377c49c676a603e23dbc4"); //公開鍵
+    const btn = document.getElementById('token_submit');
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); //ボタンを一旦無効化
 
-      //カード情報生成
+      //カード情報をまとめてcardという変数へ代入
       const card = {
         number: document.getElementById("card_number").value,
         exp_month: document.getElementById("exp_month").value,
         exp_year: document.getElementById("exp_year").value,
         cvc: document.getElementById("cvc").value
-      }; //入力されたデータを取得します。
+      };
 
-      //Payjp.createTokenというメソッドを使ってトークン生成、まだpayjpへは送らず生成だけ
+      //createTokenメソッドを使ってpayjpとやりとりをして、card変数に入った情報と引き換えにトークンを生成
       Payjp.createToken(card, (status, response) => {
 
-        if (status === 200) { //成功した場合
+        if (status === 200) { //成功した場合は、法律上データベースへカード情報を保存してはいけないので削除
           $("#card_number").removeAttr("name");
           $("#exp_month").removeAttr("name");
           $("#exp_year").removeAttr("name"); 
-          $("#cvc").removeAttr("name"); //法律上カード情報を自分のサーバにpostしてはいけないのでここで削除しまいます
+          $("#cvc").removeAttr("name");
 
-          // formにinput要素をappendして、name属性にトークンのキー名payjp-tokenを指定します。
-          // これにより生成したトークンをsubmitでpayjp-tokenとしてばして、createアクションでを使います
-          $("#card_token").append(
+          //cn__card__inner__tokenのidがついているformへ、name属性をpayjp-tokenとして、トークンを飛ばす
+          $("#cn__card__inner__token").append(
             $('<input type="hidden" name="payjp-token">').val(response.id)
-          ); //トークンを送信できるように隠しタグを生成
-          // <input>タグのtype属性でtype="hidden"を指定すると、 ブラウザ上に表示されない非表示データを送信することができます。 
+          );
+          //type=hiddenで隠しタグにすることで、<input>タグで ブラウザ上に非表示のままデータを送信することができる
 
           document.inputForm.submit();
-          alert("登録が完了しました"); //確認用
+          alert("登録が完了しました");
         } else {
-          alert("カード情報が正しくありません。"); //確認用
+          alert("カード情報が正しくありません。");
         }
-
       });
     });
   },false);

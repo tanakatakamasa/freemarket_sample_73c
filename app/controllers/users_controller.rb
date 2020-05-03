@@ -5,7 +5,5 @@ class UsersController < ApplicationController
   end
 
   def sign_out
-    user = User.find(params[:id])
-    @nickname = user.nickname
   end
 end

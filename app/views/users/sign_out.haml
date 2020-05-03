@@ -1,2 +1,10 @@
-%li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--logout
-  = link_to "ログアウト", destroy_user_session_path, method: :delete
+.uso
+
+  = render partial: "partials/header"
+
+  %main.uso__container
+    .uso__container__list
+      .uso__container__list__btn
+        = link_to "ログアウト", destroy_user_session_path, method: :delete
+
+  = render partial: "partials/footer"

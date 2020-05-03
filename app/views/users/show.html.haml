@@ -34,20 +34,6 @@
           %ul.us__l-content__tab-content__mypage-item-list
             %li.us__l-content__tab-content__mypage-item-list__faild.bold 過去に取引した商品がありません
 
-    .us__l-side
-      %nav.us__l-side__mypage-nav
-        %ul.us__l-side__mypage-nav__mypage-nav-list
-          %li
-            = link_to new_card_path do
-              .us__l-side__mypage-nav__mypage-nav-list__item
-                支払い方法
-                %i.fas.fa-angle-right
-          %li
-            = link_to "#" do
-              .us__l-side__mypage-nav__mypage-nav-list__item
-                ログアウト
-                %i.fas.fa-angle-right
-              %li.ii__pcHeader__headerInner__nav__listRight__item.ii__pcHeader__headerInner__nav__listRight__item--logout
-                = link_to "ログアウト", destroy_user_session_path, method: :delete
+    = render partial: "partials/mypage_side"
 
   = render partial: "partials/footer"

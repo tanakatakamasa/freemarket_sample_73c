@@ -8,11 +8,11 @@ class PurchaseController < ApplicationController
   def pay
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     Payjp::Charge.create(
-      amount: 222, # 決済する値段
-      card: params['payjp-token'], # フォームを送信すると作成・送信されてくるトークン
+      amount: 222, #決済する値段、後ほど変数に変える必要あり
+      card: params['payjp-token'], #フォームを送信すると作成・送信されてくるトークン
       currency: 'jpy'
     )
-    redirect_to action: 'done' #完了画面に移動
+    redirect_to action: 'done'
   end
 
   def done

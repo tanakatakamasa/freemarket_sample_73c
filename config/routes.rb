@@ -6,13 +6,17 @@ Rails.application.routes.draw do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
   end
+
   root 'items#index'
-  resources :users
-    collection do
-      post 'sign_out', to: 'users#sign_out'
+
+  resources :users, only: [:show] do
+    member do
+      get 'sign_out', to: 'users#sign_out'
     end
+  end
 
   resources :cards
+
   resources :items do
     resources :purchase, only: [:index] do
       collection do
