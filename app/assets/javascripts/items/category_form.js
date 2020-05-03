@@ -77,5 +77,3 @@ $(function(){
     }
   });
 });
-
-// {/* <div class="in__main__show__categoryBox"></div> */}
