@@ -95,8 +95,10 @@
               = link_to "/item/#{item.id}" do
                 %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
                   -# =image_tag item.images[0].item_image
-                  = image_tag "#{@images.find_by(item_id: item.id).item_image.url
-                  -# =image_tag(item.images[0].item_image.url)
+                  = image_tag @images.find_by(item_id: item.id).item_image.url
+                    -if item.buyer_id.present? 
+                    .items-box_photo__sold
+                      .items-box_photo__sold__inner SOLD
                 .ii__main__pickupContainer__productBox__productLists__productList__productList--body
                   %h3.ii__main__pickupContainer__productBox__productLists__productList__productList--body__name
                     %p= "#{item.name}"
