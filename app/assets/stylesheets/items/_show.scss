@@ -207,6 +207,17 @@
               background-color: $staydestroy_btn_hover;
               transition: .3s;
             }
+            &__soldout {
+              display: block;
+              margin-top: 20px;
+              margin-bottom: 6px;
+              background: $staydestroy_btn;
+              font-size: 14px;
+              line-height: 56px;
+              text-align: center;
+              font-weight: 600;
+              border-radius: 4px;
+            }
             &__optionalArea {
               display: flex;
               justify-content: space-between;
