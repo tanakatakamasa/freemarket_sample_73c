@@ -13,12 +13,15 @@
               %ul.mainImage
                 - @images.each_with_index do |i, num|
                   %li{class: "image#{1++num}"}
-                    %img(src="#{i.item_image}" width="350" height="350")
-              
+                    .mainImage_box
+                      %img(src="#{i.item_image.url}" width="350" height="350")
+                        -if @item.buyer_id.present? 
+                          .mainImage__soldOut
+                            .mainImage__soldOut__inner SOLD
               %ul.thumbImage
                 - @images.each_with_index do |i, num|
                   %li{class: "thumb#{1++num}"}
-                    %img(src="#{i.item_image}" width="75" height="75")
+                    %img(src="#{i.item_image.url}" width="75" height="75")
 
             .is__main__showMain__contents__topContent__itemBox__price
               %span 
@@ -50,23 +53,33 @@
                   %tr
                     %th 発送元の地域
                     %td
-                      = link_to "#{@item_address.name}", "#"
+                      = "#{@item_address.name}"
                   %tr
                     %th 発送日の目安
                     %td
                       = "#{@item_duration.name}"
-            .is__main__showMain__contents__topContent__itemBox__buyBtn
-              = link_to "購入画面へ進む", "/items/#{@item.id}/confirm"
 
-            .is__main__showMain__contents__topContent__itemBox__editBtn
-              = link_to "商品の編集", "#"
+            - if @item.buyer_id.present?
+              .is__main__showMain__contents__topContent__itemBox__soldout
+                売り切れました
+            - else
+              - if user_signed_in? && current_user.id == @item.seller.id
+                .is__main__showMain__contents__topContent__itemBox__editBtn
+                  = link_to "商品の編集", "#"
 
-            .is__main__showMain__contents__topContent__itemBox__stayBtn
-              = link_to "出品を一旦停止する", "#"            
+                .is__main__showMain__contents__topContent__itemBox__stayBtn
+                  = link_to "出品を一旦停止する", "#"
 
-            .is__main__showMain__contents__topContent__itemBox__destroyBtn
-              = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: '削除しますか？' }
-              
+                .is__main__showMain__contents__topContent__itemBox__destroyBtn
+                  = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: '削除しますか？' }
+
+              - elsif user_signed_in? && current_user.id != @item.seller.id
+                .is__main__showMain__contents__topContent__itemBox__buyBtn
+                  = link_to "購入画面へ進む", "/items/#{@item.id}/confirm"
+              - else
+                .is__main__showMain__contents__topContent__itemBox__stayBtn
+                  = link_to "購入にはログインが必要です", "/users/sign_in"
+
             .is__main__showMain__contents__topContent__itemBox__optionalArea
               %ul
                 %li#likeBtn.optionalBtn.likeBtn
@@ -81,7 +94,6 @@
         -#   .is__main__showMain__contents__topContent__commentBox
         -#     %ul.commentContents
         -#     %form#new_comment.content
-
         
         %ul.links
           - if @p_item.present?
