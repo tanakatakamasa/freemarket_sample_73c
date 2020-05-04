@@ -38,11 +38,12 @@ class ItemsController < ApplicationController
 
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     charge = Payjp::Charge.create(
-      amount: @item.price, #決済する値段、後ほど変数に変える必要あり
+      amount: @item.price,
       customer: Payjp::Customer.retrieve(@card.customer_id),
       currency: 'jpy'
     )
-    redirect_to done_item_path
+    redirect_to done_item_path, notice: '購入が完了しました'
+
   end
 
   def done

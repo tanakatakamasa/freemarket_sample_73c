@@ -1,1 +1,14 @@
-done
+.id
+
+  = render partial: "partials/header"
+
+  .id__notification
+    - if flash[:notice]
+      = flash[:notice]
+
+  %main.id__container
+    .id__container__list
+      .id__container__list__btn
+        = link_to "トップページへ戻る", destroy_user_session_path, method: :delete
+
+  = render partial: "partials/footer"
