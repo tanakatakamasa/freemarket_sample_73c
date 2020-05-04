@@ -1,4 +1,52 @@
 class ItemsController < ApplicationController
+  require 'payjp'
+ 
+  def confirm
+    if Card.where(user_id: current_user.id).first.blank?
+      redirect_to new_card_path, notice: 'クレジットカードの登録が必要です'
+    else
+      @user = current_user
+      @card = Card.where(user_id: current_user.id).first
+      @address = Address.where(user_id: current_user.id).first
+      @item = Item.find(params[:id])
+    #Payjpの秘密鍵を取得
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    #Payjpから顧客情報を取得し、表示
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @card_information = customer.cards.retrieve(@card.card_id)
+      @card_brand = @card_information.brand 
+      case @card_brand
+      when "Visa"
+        @card_src = "visa.png"
+      when "JCB"
+        @card_src = "jcb.png"
+      when "MasterCard"
+        @card_src = "mastercard.png"
+      when "American Express"
+        @card_src = "americanexpress.png"
+      when "Diners Club"
+        @card_src = "dinersclub.png"
+      when "Discover"
+        @card_src = "discover.png"
+      end
+    end
+  end
+
+  def pay
+    @item = Item.find(params[:id])
+    @card = Card.where(user_id: current_user.id).first
+
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    charge = Payjp::Charge.create(
+      amount: @item.price, #決済する値段、後ほど変数に変える必要あり
+      customer: Payjp::Customer.retrieve(@card.customer_id),
+      currency: 'jpy'
+    )
+    redirect_to done_item_path
+  end
+
+  def done
+  end
 
   # before_action :set_params, only: :create
 

@@ -75,7 +75,7 @@
 
               - elsif user_signed_in? && current_user.id != @item.seller.id
                 .is__main__showMain__contents__topContent__itemBox__buyBtn
-                  = link_to "購入画面へ進む", "/items/#{@item.id}/purchase"
+                  = link_to "購入画面へ進む", "/items/#{@item.id}/confirm"
               - else
                 .is__main__showMain__contents__topContent__itemBox__stayBtn
                   = link_to "購入にはログインが必要です", "/users/sign_in"
