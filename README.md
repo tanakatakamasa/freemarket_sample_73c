@@ -24,7 +24,7 @@ Things you may want to cover:
 * ...
 
 ## ER図
-<img width="659" alt="Screen Shot 2020-04-30 at 08 48 27" src="https://user-images.githubusercontent.com/62594253/80657733-62407700-8abf-11ea-8715-aca57069101c.png">
+<img width="745" alt="Screen Shot 2020-05-04 at 14 35 47" src="https://user-images.githubusercontent.com/62594253/80938574-9a73ec80-8e14-11ea-9f74-18c8ae093204.png">
 
 ## usersテーブル
 |Column|Type|Options|
@@ -92,7 +92,7 @@ has_many :images
 |Column|Type|Options|
 |------|----|-------|
 |item_image|string|null: false|
-|item|references|foreign_key: true, null: false|
+|item_id|references|foreign_key: true, null: false|
 ### Association
 belongs_to :item
 
@@ -100,6 +100,6 @@ belongs_to :item
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|index: true, null: false, default: false|
+|ancestry|string|index: true, default: false|
 ### Association
 has_many :items
