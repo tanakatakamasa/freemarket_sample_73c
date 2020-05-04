@@ -32,9 +32,37 @@
                 li {
                   height: 100%;
                   margin: auto;
-                  img {
+                  .mainImage_box {
                     display: block;
                     margin: 0 auto;
+                    position: relative;
+                    width: 350px;
+                    height: 350px;
+                    img {
+                      display: block;
+                      margin: 0 auto;
+                    }
+                  }
+                  .mainImage__soldOut {
+                    border-width: 120px 120px 0 0;
+                    border-color: #ea352d transparent transparent transparent;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    border-style: solid;
+                    &__inner{
+                      top: -90px;
+                      font-size: 30px;
+                      position: absolute;
+                      left: 0;
+                      z-index: 2;
+                      color: #fff;
+                      transform: rotate(-45deg);
+                      letter-spacing: 2px;
+                      font-weight: 600;
+                    }
                   }
                 }
               }
@@ -207,6 +235,17 @@
               background-color: $staydestroy_btn_hover;
               transition: .3s;
             }
+            &__soldout {
+              display: block;
+              margin-top: 20px;
+              margin-bottom: 6px;
+              background: $staydestroy_btn;
+              font-size: 14px;
+              line-height: 56px;
+              text-align: center;
+              font-weight: 600;
+              border-radius: 4px;
+            }
             &__optionalArea {
               display: flex;
               justify-content: space-between;
@@ -351,3 +390,5 @@
     }
   }
 }
+
+

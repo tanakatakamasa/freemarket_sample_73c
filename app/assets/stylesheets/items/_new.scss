@@ -89,6 +89,8 @@
       }
       &__categoryForm {
         @include in-common-form;
+        margin-top: 10px;
+        font-weight: normal;
       }
       &__condition {
         @include in-common-index;
