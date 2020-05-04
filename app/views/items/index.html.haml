@@ -94,7 +94,7 @@
             .ii__main__pickupContainer__productBox__productLists__productList
               = link_to "/items/#{item.id}" do
                 %figure.ii__main__pickupContainer__productBox__productLists__productList__productList--img
-                  -# = image_tag @images.find_by(item_id: item.id).item_image.url
+                  = image_tag @images.find_by(item_id: item.id).item_image.url
                     -if item.buyer_id.present? 
                     .items-box_photo__sold
                       .items-box_photo__sold__inner SOLD
