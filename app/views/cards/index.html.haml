@@ -1,0 +1,37 @@
+.ci
+
+  = render partial: "partials/header"
+
+  %main.ci__container
+    .ci__title
+      %h2 支払い方法
+    .ci__card
+      %h3 クレジットカード一覧
+      - if @card.present?
+        %ul
+          %li
+            .ci__card__list
+              %figure
+                = image_tag "material/card_logos/#{@card_src}", alt: @card_brand, id: "card_image"
+              .ci__card__list__pay
+                = "**** **** **** " + @card_information.last4
+              .ci__card__list__pay
+                - exp_month = @card_information.exp_month.to_s
+                - exp_year = @card_information.exp_year.to_s.slice(2,3)
+                = exp_month + " / " + exp_year
+              %input{type: "hidden", name: "card_id", value: ""}
+              = button_to "削除する", card_path(@card), method: :delete, class:"ci__card__list__delete"
+              - if flash[:notice]
+                .alert.alert-success
+                = flash[:notice]
+              - if flash[:alert]
+                .alert.alert-dange
+                = flash[:alert]
+      - else
+        .ci__card__new
+          .ci__card__new__box
+            = link_to new_card_path, class:"ci__card__new__box__btn" do
+              %i.far.fa-credit-card 
+              クレジットカードを追加する
+
+  = render partial: "partials/footer"

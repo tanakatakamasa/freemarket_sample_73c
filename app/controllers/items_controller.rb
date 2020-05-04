@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   # before_action :set_params, only: :create
 
   def index
+    @items = Item.order('created_at DESC').limit(3)
+    @images = Image.all
   end
 
   def show
@@ -43,12 +45,6 @@ class ItemsController < ApplicationController
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
-
-  
- 
-
-   
-
   end
 
   def create

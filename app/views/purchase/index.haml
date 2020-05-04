@@ -1,0 +1,71 @@
+.pn__main-container
+  = render partial: "partials/header"
+  %section.pn__main-container__purchase-details
+    %h2.pn__main-container__purchase-details__title
+      購入内容の確認
+    %section.pn__main-container__purchase-details__item
+      .pn__main-container__purchase-details__item__inner
+        .pn__main-container__purchase-details__item__inner__product
+          %h3.pn__main-container__purchase-details__item__inner__product__image
+            = image_tag "#{@item.images[0].item_image}", class:"buy-image", size: "75x75"
+          %p.pn__main-container__purchase-details__item__inner__product__name
+            商品名
+            %br
+              = @item.name
+        %form.pn__main-container__purchase-details__item__inner__purchase-details
+          %p.pn__main-container__purchase-details__item__inner__purchase-details__price
+            = @item.price
+            %span.pn__main-container__purchase-details__item__inner__purchase-details__price__shipping-fee
+              送料込み
+          
+          %ul.pn__main-container__purchase-details__item__inner__purchase-details__buy-price
+            %li.pn__main-container__purchase-details__item__inner__purchase-details__buy-price__box
+              .pn__main-container__purchase-details__item__inner__purchase-details__buy-price__box__text
+                支払い金額
+              .pn__main-container__purchase-details__item__inner__purchase-details__buy-price__box__amount
+                %span
+                  = @item.price
+          %ul.pn__main-container__purchase-details__item__inner__purchase-details__use-points
+            %li.pn__main-container__purchase-details__item__inner__purchase-details__use-points__top
+              .pn__main-container__purchase-details__item__inner__purchase-details__use-points__top__title
+                -# 下記のモデル、テーブル指定は仮置きです。
+                = check_box :users, :user_point, {class: "check_box"}, true, false
+                ポイントを使用(所持ポイント:P0)
+
+  %section.pn__main-container__purchase-details__user-info
+    .pn__main-container__purchase-details__user-info__inner
+      %h3
+        配送先
+      %address.pn__main-container__purchase-details__user-info__inner__address
+        %br
+        東京都渋谷区道玄坂2丁目23-12 フォンティスビル7F
+        %br
+          テック太郎
+      = link_to "" do
+        %span
+          変更する
+        %i.fas.fa-chevron-right
+  %section.pn__main-container__purchase-details__user-pay-info
+    .pn__main-container__purchase-details__user-pay-info__inner
+      %h3
+        支払い方法
+      %p.pn__main-container__purchase-details__user-pay-info__inner__text
+        %br
+        ○○○○-1111-✖️✖️✖️✖️
+        %br
+        12/30
+        %br
+        JCB
+
+      = link_to "" do
+        %span
+          変更する
+        %i.fas.fa-chevron-right
+
+  %ul.pn__main-container__purchase-details__item__inner__purchase-details__purchase-button
+    = link_to method: :post,class: "submit-btn submit-btn-red" do
+      %li.pn__main-container__purchase-details__item__inner__purchase-details__purchase-button__box
+        購入する
+    = form_tag(action: :pay, method: :post) do
+      %script.payjp-button{"data-key" => "pk_test_4b1377c49c676a603e23dbc4", :src => "https://checkout.pay.jp", :type => "text/javascript"}
+  = render partial: "partials/footer"
