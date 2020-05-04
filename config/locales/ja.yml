@@ -217,6 +217,7 @@ ja:
         password: パスワード
         password_confirmation: パスワード確認
         email: メールアドレス
+        birthday: 生年月日
       address:
         last_name: 苗字
         last_name_kana: 苗字（カナ）
