@@ -42,6 +42,8 @@ class ItemsController < ApplicationController
       customer: Payjp::Customer.retrieve(@card.customer_id),
       currency: 'jpy'
     )
+    @buyer = Item.find(params[:id])
+    @buyer.update( buyer_id: current_user.id)
     redirect_to done_item_path, notice: '購入が完了しました'
 
   end
