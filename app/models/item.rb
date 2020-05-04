@@ -27,11 +27,12 @@ class Item < ApplicationRecord
   #   validates :duration_id
   # end
 
-
+  # showアクションのビューで前の商品を呼び出すメソッド
   def previous
     Item.where("id < ?", self.id).order("id DESC").first
   end
  
+  # showアクションのビューで後ろの商品を呼び出すメソッド
   def next
     Item.where("id > ?", self.id).order("id ASC").first
   end
