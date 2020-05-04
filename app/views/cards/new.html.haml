@@ -1,6 +1,11 @@
 .cn
 
   = render partial: "partials/header"
+    
+  .cn__notification
+    - if flash[:notice]
+      = flash[:notice]
+
   %main.cn__container
     .cn__title
       %h2 クレジットカード情報入力
