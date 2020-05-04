@@ -1,5 +1,13 @@
 .cn {
   background: #f5f5f5;
+
+  &__notification {
+    width: 100%;
+    background-color: #3CCACE;
+    text-align: center;
+    font-size: 14px;
+  }
+
   &__container {
     margin: 40px auto;
     width: 1020px;

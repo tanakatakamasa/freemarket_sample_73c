@@ -9,7 +9,6 @@ class CardsController < ApplicationController
 
   def create #直前のnewアクションでpayjpからトークンとして返ってきたpayjp-tokenを、customer_idとcard_idとしてデータベースへ保管
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else #customer_idとcard_idを自分たちのデータベースの型に合わせて保管するためにcustomerという変数へ代入
