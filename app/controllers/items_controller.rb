@@ -90,7 +90,7 @@ class ItemsController < ApplicationController
     @item.images.new
 
     @category_parent_array = ["選択してください"]  
-    Category.where(ancestry: 0).each do |parent|
+    Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
   end
@@ -98,7 +98,7 @@ class ItemsController < ApplicationController
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: 0).children
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
   # 子カテゴリーが選択された後に動くアクション
   def get_category_grandchildren
