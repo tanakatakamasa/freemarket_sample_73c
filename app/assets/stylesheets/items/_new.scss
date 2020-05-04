@@ -16,7 +16,7 @@
   background-color: rgb(230, 227, 227);
   overflow: scroll;
   &__main {
-    width: 640px;
+    width: 649px;
     margin: auto;
     background-color: white;
     &__discription {
@@ -230,4 +230,8 @@
   padding: 10px;
   // margin: 0 10px;
   border: dashed 1px #d3d3d3;
+}
+
+.items_new-js-remove {
+  color: $frima-base-color;
 }
