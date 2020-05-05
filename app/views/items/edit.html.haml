@@ -62,20 +62,13 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-          -# .in__main__show__categoryBox
-          = f.select :parent_name, @category_parent_array,{selected:@item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
-          = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "選択してください",selected: @item.category.parent.id}),{},{ class: "in__main__show__categoryForm", id: 'child_category', name: ""}
-          = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "選択してください", selected: @item.category.id}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category', name: ""}
-          
-          -# .category-wrapper-select
-          -#   .category-wrapper-select__box
-          -#     = f.select :parent_name, @category_parent_array, {selected:@item.category.parent.parent.name}, { class: 'category-wrapper__category form-control', id: 'parent_category'}
-          -# .category-wrapper-select#children_wrapper
-          -#   .category-wrapper-select__box
-          -#     = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.parent.id}),{}, {class: 'category-wrapper__category form-control', id: 'child_category'}
-          -# .category-wrapper-select#grandchildren_wrapper
-          -#   .category-wrapper-select__box
-          -#     = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.id}),{}, {class: 'category-wrapper__category form-control', id: 'grandchild_category'}
+          = f.select :parent_name, @category_parent_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'child_category'}
+          = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
+          -# = f.select :category_id, @category_children_array,{selected: @item.category.parent.children.name},{ class: "in__main__show__categoryForm", id: 'child_category'}
+          -# = f.select :category_id, @category_grandchildren_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
+
+
         .in__main__show__condition
           商品の状態
           %span.required 必須
