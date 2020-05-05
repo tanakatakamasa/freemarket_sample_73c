@@ -16,16 +16,16 @@ class Item < ApplicationRecord
 
   # helperオプションは出品機能が最低限完了し次第、付与。
   # 今はチームメンバーから一部引き継いでいる状態なので、要相談、一旦バリデーションはコメントアウトする
-  # with_options presence: true do
-  #   validates :name
-  #   validates :price
-  #   validates :discription
-  #   validates :category_id
-  #   validates :condition_id
-  #   validates :burden_id
-  #   validates :prefecture_id
-  #   validates :duration_id
-  # end
+  with_options presence: true do
+    validates :name
+    validates :price
+    validates :discription
+    validates :category_id
+    validates :condition_id
+    validates :burden_id
+    validates :prefecture_id
+    validates :duration_id
+  end
 
   # showアクションのビューで前の商品を呼び出すメソッド
   def previous
