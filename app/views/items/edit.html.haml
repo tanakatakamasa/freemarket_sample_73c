@@ -1,0 +1,130 @@
+.in
+  = render partial: "partials/header"
+  .in__main
+    = form_with model: @item do |f|
+      .items_new-newimage
+        .items_new-product__headline
+          .items_new-product__headline--title 
+            出品画像
+            %span.required 必須
+        %p.items_new-product__explanation 最大5枚までアップロードできます
+        .items_new-image
+          .items_new-image-box
+            .items_new-content
+            .items_new-uploader-box
+              %label.items_new-uploader__label 
+                = f.fields_for :images do |image|
+                  .items_newt-js-file_group{"data-index" => "#{@item.images.index}"}
+                    = image.file_field :item_image, class: 'items_new-js-file', style: "display:none"
+
+      -# .image-wrapper
+      -#   .image-wrapper__label
+      -#     出品画像 
+      -#     %span.image-wrapper__label__tag 
+      -#       必須
+      -#   .imate-wrapper__text 最大5枚までアップロードできます
+      -#   .image-wrapper__image
+      -#     .post__drop__box__container
+      -#       .prev-content
+      -#       .label-content
+      -#         %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0" ,type: "file"}
+      -#           %pre.label-box__text-visible クリックしてファイルをアップロード
+      -#       .hidden-content
+      -#         = f.fields_for :images do |i|
+      -#           - for num in 0..4 do
+      -#             = i.file_field :item_image, class: "hidden-field", name: "item[images_attributes][#{num}][item_image]", id: "item_images_attributes_#{num}_item_image"
+        -# #image-box
+        -#   #previews
+        -#     - if @item.persisted?
+        -#       - @item.images.each_with_index do |image, i|
+        -#         = image_tag image.item_index.url, data: { index: i }, width: "100", height: '100'
+        -#   = f.fields_for :images do |image|
+        -#     .js-file_group{"data-index" => "#{image.index}"}
+        -#       = image.file_field :item_index, class: 'js-file' 
+        -#       %br/
+        -#       %span.js-remove 削除
+
+
+        
+
+      .in__main__discription
+        .in__main__discription__name
+          商品名
+          %span.required 必須
+        = f.text_field :name, class: "in__main__discription__textForm", maxlength: 40, placeholder: "40文字まで"
+        .in__main__discription__text
+          商品の説明
+          %span.required 必須
+        = f.text_area :discription, class: "in__main__discription__form", maxlength: 1000, placeholder: "商品の説明(必須 1,000文字以内)\n （色、素材、重さ、定価、注意点など）\n\n例） 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+      .in__main__show
+        .in__main__show__title
+          商品の詳細
+        .in__main__show__category
+          カテゴリー 
+          %span.required 必須
+          -# .in__main__show__categoryBox
+          = f.select :parent_name, @category_parent_array,{selected:@item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "選択してください",selected: @item.category.parent.id}),{},{ class: "in__main__show__categoryForm", id: 'child_category', name: ""}
+          = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "選択してください", selected: @item.category.id}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category', name: ""}
+          
+          -# .category-wrapper-select
+          -#   .category-wrapper-select__box
+          -#     = f.select :parent_name, @category_parent_array, {selected:@item.category.parent.parent.name}, { class: 'category-wrapper__category form-control', id: 'parent_category'}
+          -# .category-wrapper-select#children_wrapper
+          -#   .category-wrapper-select__box
+          -#     = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.parent.id}),{}, {class: 'category-wrapper__category form-control', id: 'child_category'}
+          -# .category-wrapper-select#grandchildren_wrapper
+          -#   .category-wrapper-select__box
+          -#     = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.id}),{}, {class: 'category-wrapper__category form-control', id: 'grandchild_category'}
+        .in__main__show__condition
+          商品の状態
+          %span.required 必須
+        = f.collection_select :condition_id, Condition.all, :id, :name,{prompt: "選択してください"},{class: "in__main__show__form"}
+      .in__main__ship
+        .in__main__ship__title
+          配送について
+        .in__main__ship__charge
+          配送料の負担
+          %span.required 必須
+        = f.collection_select :burden_id, Burden.all, :id, :name,{prompt: "選択してください"},{ class: "in__main__ship__chargeForm"}
+        .in__main__ship__region
+          発送元の地域
+          %span.required 必須
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,{prompt: "選択してください"},{ class: "in__main__ship__regionForm"}
+        .in__main__ship__day
+          発送までの日数
+          %span.required 必須
+        = f.collection_select :duration_id, Duration.all, :id, :name,{prompt: "選択してください"},{ class: "in__main__ship__form"}
+      .in__main__price
+        .in__main__price__title
+          価格（¥300〜9,999,999）
+        .in__main__price__group
+          .in__main__price__group__left
+            販売価格
+            %span.required 必須
+          .in__main__price__group__right
+            .in__main__price__group__right__icon ¥
+            = f.number_field :price, min: 300, max: 9999999, class: "in__main__price__group__right__form", placeholder: "0"
+        .in__main__price__group2
+          .in__main__price__group2__feeTitle 販売手数料(10%) 
+          .in__main__price__group2__fee ー
+        .in__main__price__group
+          .in__main__price__group__profitTitle 販売利益
+          .in__main__price__group__profit ー
+      .in__main__btn
+        = f.submit "更新する", class: "in__main__btn__exhibit"
+        = link_to "もどる", root_path, class: "in__main__btn__back"
+      .in__main__caution
+        禁止されている
+        = link_to "行為","https://www.mercari.com/jp/help_center/getting_started/prohibited_conduct/", class: "in__main__caution__link"
+        および
+        = link_to "出品物","https://www.mercari.com/jp/help_center/getting_started/prohibited_items/", class: "in__main__caution__link"
+        を必ずご確認ください。
+        = link_to "偽ブランド", "https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/", class: "in__main__caution__link"
+        や
+        = link_to "盗品物", "https://www.mercari.com/jp/help_center/getting_started/report_counterfeit_goods/", class: "in__main__caution__link"
+        などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして
+        = link_to "加盟店規約", "https://www.mercari.com/jp/seller_terms/", class: "in__main__caution__link"
+        に同意したことになります。
+
+  = render partial: "partials/footer"

@@ -117,10 +117,51 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+
+    grandchild_category = @item.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
+
+    # @category_parent_array = ["選択してください"]  
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent_array << parent.name
+    #   # @category_parent_array = ["#{parent.name}"]
+    #   @category_child_array = ["選択してください"]  
+    #   Category.where(ancestry: parent).each do |child|
+    #     @category_child_array << child.name
+    #     @category_grandchild_array = ["選択してください"]  
+    #     Category.where(ancestry: child).each do |grandchild|
+    #       @category_grandchild_array << grandchild.name
+    #     end
+    #   end
+    # end
+    
+    
   end
 
   def update
+    item = Item.find(params[:id])
     
+    if item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
 
