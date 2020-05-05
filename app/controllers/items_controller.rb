@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   require 'payjp'
  
   def confirm
-    before_action :authenticated_user!
     if Card.where(user_id: current_user.id).first.blank?
       redirect_to new_card_path, notice: 'クレジットカードの登録が必要です'
     else
