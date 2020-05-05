@@ -13,8 +13,8 @@ $(function(){
   const buildFileField = (num)=> {
     const html = `<div data-index="${num}" class="items_new-js-file_group">
                     <input class="items_new-js-file" type="file"
-                    name="item[item_images_attributes][${num}][item_image]"
-                    id="item_images_attributes_${num}_item_image"
+                    name="item[images_attributes][${num}][item_image]"
+                    id="images_attributes_${num}_item_image"
                     style= "display:none;">
                   </div>`;
     return html;
