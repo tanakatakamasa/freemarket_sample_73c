@@ -41,13 +41,13 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'factory_bot_rails'
-  gem 'rspec-rails'
   gem 'capistrano'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -91,5 +91,3 @@ gem 'ancestry'
 gem 'payjp'
 # 環境変数を簡単に定義できるENVファイルを対応させるgem
 gem 'dotenv-rails'
-
-
