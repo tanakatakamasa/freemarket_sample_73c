@@ -112,9 +112,27 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :new
+      @category_parent_array = ["選択してください"]  
+      Category.where(ancestry: nil).each do |parent|
+        @category_parent_array << parent.name
+      end
+      redirect_to new_item_path
+      # render :new
     end
   end
+
+  # def create
+  #   @item = Item.new(item_params)
+  #   if @item.valid?
+  #      @item.save!
+  #   else
+  #     render :new
+  #     redirect_to new_item_path
+  #   end
+  # end
+
+
+
 
   def edit
   end
