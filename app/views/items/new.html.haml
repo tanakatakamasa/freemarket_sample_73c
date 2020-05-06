@@ -2,6 +2,7 @@
   = render partial: "partials/header"
   .in__main
     = form_with model: @item do |f|
+      = render 'layouts/error_messages', model: f.object 
       .items_new-newimage
         .items_new-product__headline
           .items_new-product__headline--title 
