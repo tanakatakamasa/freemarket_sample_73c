@@ -109,10 +109,14 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @category_parent_array = ["選択してください"]  
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
     if @item.save
       redirect_to root_path
     else
-      render :new
+      render :"new"
     end
   end
 
