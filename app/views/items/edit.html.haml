@@ -16,7 +16,6 @@
                 = f.fields_for :images do |image|
                   .items_newt-js-file_group{"data-index" => "#{@item.images.index}"}
                     = image.file_field :item_image, class: 'items_new-js-file', style: "display:none"
-        
 
       .in__main__discription
         .in__main__discription__name
@@ -33,12 +32,17 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-          = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          = f.select :parent_name, @category_parent_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'child_category'}
+          = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
+          -# = f.select :category_id, @category_children_array,{selected: @item.category.parent.children.name},{ class: "in__main__show__categoryForm", id: 'child_category'}
+          -# = f.select :category_id, @category_grandchildren_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
+
 
         .in__main__show__condition
           商品の状態
           %span.required 必須
-        = f.collection_select :condition_id, Condition.all, :id, :name,{prompt: "選択してください"},{ class: "in__main__show__form"}
+        = f.collection_select :condition_id, Condition.all, :id, :name,{prompt: "選択してください"},{class: "in__main__show__form"}
       .in__main__ship
         .in__main__ship__title
           配送について
@@ -71,7 +75,7 @@
           .in__main__price__group__profitTitle 販売利益
           .in__main__price__group__profit ー
       .in__main__btn
-        = f.submit "出品する", class: "in__main__btn__exhibit"
+        = f.submit "更新する", class: "in__main__btn__exhibit"
         = link_to "もどる", root_path, class: "in__main__btn__back"
       .in__main__caution
         禁止されている

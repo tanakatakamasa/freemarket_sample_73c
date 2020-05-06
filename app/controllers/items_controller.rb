@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   require 'payjp'
  
   def confirm
@@ -38,11 +40,14 @@ class ItemsController < ApplicationController
 
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     charge = Payjp::Charge.create(
-      amount: @item.price, #決済する値段、後ほど変数に変える必要あり
+      amount: @item.price,
       customer: Payjp::Customer.retrieve(@card.customer_id),
       currency: 'jpy'
     )
-    redirect_to done_item_path
+    @buyer = Item.find(params[:id])
+    @buyer.update( buyer_id: current_user.id)
+    redirect_to done_item_path, notice: '購入が完了しました'
+
   end
 
   def done
@@ -98,12 +103,22 @@ class ItemsController < ApplicationController
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    respond_to do |format| 
+      format.html
+      format.json do
+        @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+      end
+    end
   end
   # 子カテゴリーが選択された後に動くアクション
   def get_category_grandchildren
   #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+    respond_to do |format| 
+      format.html
+      format.json do
+        @category_grandchildren = Category.find("#{params[:child_id]}").children
+      end
+    end
   end
 
 
@@ -121,10 +136,51 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+
+    grandchild_category = @item.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
+
+    # @category_parent_array = ["選択してください"]  
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent_array << parent.name
+    #   # @category_parent_array = ["#{parent.name}"]
+    #   @category_child_array = ["選択してください"]  
+    #   Category.where(ancestry: parent).each do |child|
+    #     @category_child_array << child.name
+    #     @category_grandchild_array = ["選択してください"]  
+    #     Category.where(ancestry: child).each do |grandchild|
+    #       @category_grandchild_array << grandchild.name
+    #     end
+    #   end
+    # end
+    
+    
   end
 
   def update
+    item = Item.find(params[:id])
     
+    if item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
 

@@ -12,7 +12,8 @@ class Item < ApplicationRecord
 
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
-
+  # 画像がないと投稿できないようにするバリデーション
+  validates_presence_of :images 
 
   # helperオプションは出品機能が最低限完了し次第、付与。
   # 今はチームメンバーから一部引き継いでいる状態なので、要相談、一旦バリデーションはコメントアウトする
@@ -27,11 +28,12 @@ class Item < ApplicationRecord
     validates :duration_id
   end
 
-
+  # showアクションのビューで前の商品を呼び出すメソッド
   def previous
     Item.where("id < ?", self.id).order("id DESC").first
   end
-  
+ 
+  # showアクションのビューで後ろの商品を呼び出すメソッド
   def next
     Item.where("id > ?", self.id).order("id ASC").first
   end
