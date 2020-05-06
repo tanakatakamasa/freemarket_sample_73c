@@ -207,7 +207,7 @@
         height: 150px;
         max-width: 100%;
       }
-      .items_new-uploader-box{
+      .items_new-uploader-box, .items_edit-lower-box {
         height: 150px;
         width: 100%;
         background-color: #f8f8f8;
@@ -224,16 +224,41 @@
 }
 
 
-
-
-
-.items_new-preview-box{
+// プレビューボックスのCSS共通
+.items_new-preview-box, .items_edit-preview-box{
   text-align: center;
   padding: 10px;
-  // margin: 0 10px;
   border: dashed 1px #d3d3d3;
 }
 
-.items_new-js-remove {
+
+// 削除ボタンのCSS共通
+.items_new-js-remove, .items_edit-js-remove {
   color: $frima-base-color;
+}
+
+
+
+// 編集
+.items_edit-image-box{
+  display: flex;
+}
+
+.items_edit-content{
+  display: flex;
+}
+
+.items_edit-lower-box{
+  height: 150px;
+  width: 100%;
+  background-color: #f8f8f8;
+  border: dashed 1px #d3d3d3;
+
+}
+
+.items_edit-lower-box__label{
+  display:block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 }
