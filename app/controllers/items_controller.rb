@@ -126,17 +126,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     # @item.images.new
 
-    # @parents = Category.all.order("id ASC").limit(13)
-    # @category_parent_array = ["選択してください"]  
-    # Category.where(ancestry: nil).each do |parent|
-    #   @category_parent_array << parent.name
-    # end
-    # if @item.save
-    #   redirect_to root_path
-    # else
-    #   render :new
-    # end
-    # @item.save && @item.images.save
     @category_parent_array = ["選択してください"]  
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
@@ -149,14 +138,13 @@ class ItemsController < ApplicationController
       # @category_parent_array = ["選択してください"]  
       # Category.where(ancestry: nil).each do |parent|
       #   @category_parent_array << parent.name
-      end
+      # end
       render :new
     end
   end
 
   def edit
     @item = Item.find(params[:id])
-
 
     @category_parent_array = []
     # categoriesテーブルから親カテゴリーのみを抽出、配列に格納
@@ -211,5 +199,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :discription, :category_id, :condition_id, :burden_id, :prefecture_id, :duration_id, :price, images_attributes: [:item_image, :_destroy, :id] ).merge(seller_id: current_user.id)
   end 
-
 end
