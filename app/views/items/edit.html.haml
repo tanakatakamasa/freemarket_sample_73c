@@ -32,15 +32,12 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-          -# = f.select :parent_name, @category_parent_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
-          -# = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'child_category'}
-          -# = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
-          -# = f.select :category_id, @category_children_array,{selected: @item.category.parent.children.name},{ class: "in__main__show__categoryForm", id: 'child_category'}
-          -# = f.select :category_id, @category_grandchildren_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
+          -# 親のセレクトボックス
           = f.select :category, options_for_select(@category_parent_array.map{|c|[c, {}]}, @item.category.parent.parent.name), {}, {class: 'in__main__show__categoryForm', id: 'parent_category'}
+          -# 子のセレクトボックス
           = f.select :category, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.id), {}, {class: 'in__main__show__categoryForm', id: 'child_category'}
+          -# 孫のセレクトボックス
           = f.select :category, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.id), {}, {class: 'in__main__show__categoryForm', id: 'grandchild_category'}
-
 
         .in__main__show__condition
           商品の状態
