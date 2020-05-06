@@ -46,7 +46,7 @@ $(function(){
 });
 
 
-
+// 以下編集のJS
 
 
 $(function(){
@@ -105,7 +105,6 @@ $(function(){
     const targetIndex = $(this).parent().parent().data('index');
     // もしチェックボックスが存在すればチェックを入れる
     $(`.delete-check-box-${targetIndex}`).prop('checked', true);
-    // if (hiddenCheck) hiddenCheck.prop('checked', true);
     $(this).parent().parent().remove();
     $(`div[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
