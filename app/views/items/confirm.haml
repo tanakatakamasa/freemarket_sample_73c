@@ -1,69 +1,61 @@
-.pn__main-container
+.ic
 
   = render partial: "partials/header"
 
-  %main.buy-main 
-    = form_tag(action: :pay, method: :post) do
-      .buy-item-container
-        %h2.buy-item-head 購入内容の確認
-        %section.buy-content.buy-item
-          .buy-content-inner
-            .buy-item-box
-              .buy-item-image
-                =image_tag(@item.images[0].item_image.url,class:"buy-image")
-              .buy-item-detail
-                %p.buy-item-name
-                  =@item.name
-                  %p.buy-item-price.bold
+  %main.ic__main
+    .ic__main__container
+      %h2.ic__main__container__head 購入内容の確認
+    .ic__main__flame
+      .ic__buy
+        .ic__buy__box
+          .ic__buy__box__image
+            =image_tag(@item.images[0].item_image.url,class:"ic__buy__box__image__tag")
+          .ic__buy__box__detail
+            %p.ic__buy__box__detail__name
+              =@item.name
+              %p.ic__buy__box__detail__name__price
+                %span
+                  = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
+                %span.ic__buy__box__detail__name__fee
+                  （税込）送料込み
+      %section.ic__main__container__info
+        = form_tag(action: :pay, method: :post) do
+          .ic__main__container__info__inner
+            %ul.ic__main__container__info__inner__table
+              %li.ic__main__container__info__inner__table__row
+                .ic__main__container__info__inner__table__head
+                  %span 支払い金額
+                .ic__main__container__info__inner__table__price
+                  %span
                     = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
-                    %span.item-shipping-fee.f14.bold
-                      (税込)送料込み
-        %section.buy-content.buy-user-info
-          .buy-content-inner
-            %ul.buy-price-table
-              %li.buy-price-row.buy-you-pay.bold
-              %li.buy-price-cell 支払い金額
-              %li.buy-price-cell
-                = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
-            %section.buy-content.buy-user-info
-          .buy-content-inner
-            %h3 支払方法
-            .payment-content__creditcards__list
-              %figure
-                = image_tag "material/card_logos/#{@card_src}",alt: @card_brand, id: "card_image"
-              .payment-content__cards__list__number
-                = "**** **** **** " + @card_information.last4
-              .payment-content__cards__list__number
-                - exp_month = @card_information.exp_month.to_s
-                - exp_year = @card_information.exp_year.to_s.slice(2,3)
-                = exp_month + " / " + exp_year
-            %section.buy-content.buy-user-info
-          .buy-content-inner
-            %h3 配送先
-            %address.buy-user-info-text
-              =@address.postal_code
+          .ic__main__container__info__inner
+            .box
+              %h3 支払方法
+              .ic__main__container__info__inner__list
+                %span クレジットカード
+                .ic__main__container__info__inner__list__number
+                  = "**** **** **** " + @card_information.last4
+                .ic__main__container__info__inner__list__number
+                  - exp_month = @card_information.exp_month.to_s
+                  - exp_year = @card_information.exp_year.to_s.slice(2,3)
+                  = "有効期限 " + exp_month + " / " + exp_year
+                = image_tag "material/card_logos/#{@card_src}",alt: @card_brand, id: "card_image", height: "20", width: "30"
+          .ic__main__container__info__inner__text
+            %h3.distination 配送先
+            %address
+              = "〒" + @address.postal_code
               %br
               =@address.prefecture_id
               %br
               =@address.city
               =@address.street
               =@address.apartment
+              =@address.phone_number
               %br
               =@user.last_name
               =@user.first_name
-            %section.buy-content.buy-user-info
+
+          %section.ic__main__container__info__inner__bottom
             = submit_tag("購入する", class:"purchase")
 
-            
-  .exhibit-page__footer
-    .exhibit-page__footer__content
-      .exhibit-page__footer__content__main
-        %ul.exhibit-page__footer__lists
-          %li.exhibit-page__footer__list
-            プライバシーポリシー
-          %li.exhibit-page__footer__list
-            メルカリ利用規約
-          %li.exhibit-page__footer__list
-            特定商取引に関する表記
-          %p.exhibit-page__footer__copyright
-            © 2019 Mercari
+  = render partial: "partials/footer"

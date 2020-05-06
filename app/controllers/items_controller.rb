@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   require 'payjp'
  
   def confirm
@@ -38,11 +40,14 @@ class ItemsController < ApplicationController
 
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     charge = Payjp::Charge.create(
-      amount: @item.price, #決済する値段、後ほど変数に変える必要あり
+      amount: @item.price,
       customer: Payjp::Customer.retrieve(@card.customer_id),
       currency: 'jpy'
     )
-    redirect_to done_item_path
+    @buyer = Item.find(params[:id])
+    @buyer.update( buyer_id: current_user.id)
+    redirect_to done_item_path, notice: '購入が完了しました'
+
   end
 
   def done
@@ -132,14 +137,18 @@ class ItemsController < ApplicationController
     #   render :new
     # end
     # @item.save && @item.images.save
+    @category_parent_array = ["選択してください"]  
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
     if @item.save
       redirect_to root_path
     else
       @item = Item.new(item_params)
       # @item.images.new
-      @category_parent_array = ["選択してください"]  
-      Category.where(ancestry: nil).each do |parent|
-        @category_parent_array << parent.name
+      # @category_parent_array = ["選択してください"]  
+      # Category.where(ancestry: nil).each do |parent|
+      #   @category_parent_array << parent.name
       end
       render :new
     end

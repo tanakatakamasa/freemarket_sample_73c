@@ -1,158 +1,170 @@
-// このページで使う変数定義
-.pn__main-container{
-  background-color: $normal-gray;
-  &__purchase-details{
+.ic {
+  background: #f5f5f5;
+
+  .ic__main {
     width: 700px;
-    height: 100vh;
     margin: 0 auto;
-    background-color: $normal-white;
-    &__title{
-      padding: 16px;
+    background: #fff;
+    margin: 40px auto;
+
+    &__container {
       font-size: 22px;
-      line-height: 1.5;
+      padding: 32px;
       text-align: center;
-      font-weight: bold;
+      h2 {
+        font-weight: 600;
+      }
     }
-    &__item{
-      padding: 24px 12.5% 0;
-      border-top: 1px solid $global-back-color;
-      &__inner{
+    &__flame {
+      border-top: 1px solid #f5f5f5;
+      text-align: center;
+      .ic__buy {
+        max-width: 343px;
         margin: 0 auto;
-        max-width: 320px;
-        &__product{
+        &__box {
           display: flex;
-          height: 64px;
-          &__name{
-            font-size: 16px;
-            line-height: 1.5;
-            font-weight: 600;
-            margin: 0 0 0 16px;
-            width: 240px;
+          padding: 32px 16px;
+          &__image {
+            height: 80px;
+            width: 80px;
+            min-width: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+              width: 80px;
+              height: 80px;
+              vertical-align: middle;
+            }
           }
-        }
-        &__purchase-details{
-          &__price{
-            margin: 8px 0 0;
-            line-height: 1.5;
-            font-size: 22px;
-            font-weight: 600;
-            text-align: center;
-            &__shipping-fee{
-              margin: 0 0 0 8px;
+          &__detail {
+            margin-left: 16px;
+            &__name {
               font-size: 14px;
-              font-weight: 400; 
-              color: rgb(51, 51, 51);
-            }
-          }
-          &__use-points{
-            &__top{
-              &__title{
-                font-size: 14px;
-              }
-            }
-          }
-          &__buy-price{
-            display: table;
-            width: 100%;
-            &__box{
-              display: flex;
-              font-weight: 600;
-              width: 100%;
-              &__text{
-                padding: 16px 0;
-                font-size: 18px;
-                width: 194px;
+              margin: 0;
+              padding: 0 0 8px;
+              line-height: 1.5;
+              text-align: left;
+              &__price {
+                margin: 0;
                 text-align: left;
+                font-size: 15px;
+                font-weight: 600;
+                .price {
+                  font-size: 15px;
+                }
+                span {
+                  font-size: 15px;
+                }
+                .ic__buy__box__detail__name__fee {
+                  font-size: 12px;
+                }
               }
-              &__amount{
-                padding: 16px 0;
+            }
+            
+          }
+        }
+      }
+    }
+    &__container__info {
+      text-align: center;
+      border-top: 1px solid #f5f5f5;
+      form {
+        max-width: 343px;
+        margin: 0 auto;
+        .ic__main__container__info__inner {
+          padding: 32px 0;
+          border-top: 1px solid #f5f5f5;
+          text-align: left;
+          ul {
+            display: table;
+            border-collapse: collapse;
+            width: 100%;
+            li {
+              font-weight: 600;
+              display: flex;
+              justify-content: space-between;
+              height: 30px;
+              .ic__main__container__info__inner__table__head {
                 font-size: 18px;
-                width: calc(100% - 194px);
+                line-height: 30px;
+                height: 30px;
+                span {
+                  vertical-align: bottom;
+                  line-height: 30px;
+                  height: 30px;
+                }
+              }
+              .ic__main__container__info__inner__table__price {
+                font-weight: 600;
+                display: table-cell;
+                padding: 0;
                 text-align: right;
+                vertical-align: center;
+                span {
+                  font-size: 38px;
+                  line-height: 30px;
+                }
               }
             }
           }
-          &__purchase-button{
-            padding: 24px 12.5% 0;
-            margin: 0 auto;
-            max-width: 343px;
-            a{
-              text-decoration: none;
-              color: $normal-white;
+          .box {
+            text-align: left;
+            h3 {
+              font-weight: 600;
+              font-size: 14px;
             }
-            &__box{
-              line-height: 48px;
-              display: block;
-              text-align: center;
-              background: #888;
-              border-top: 1px solid #f5f5f5;
+            .ic__main__container__info__inner__list {
+              text-align: left;
+              margin: 8px 0 0;
+              font-size: 14px;
+            }
+            img {
+              margin-top: 8px;
             }
           }
         }
-      }
-    }
-    &__user-info{
-      margin: 40px 0 0;
-      padding: 24px 12.5% 0;
-      border-top: 1px solid $global-back-color;
-      background-color: $normal-white;
-      &__inner{
-        max-width: 320px;
-        margin: 0 auto;
-        h3{
+        .ic__main__container__info__inner__text {
+          margin: 0;
           font-size: 14px;
-          color: $default-font-black;
-          font-weight: bold;
+          text-align: left;
+          border-top: 1px solid #f5f5f5;
+          padding: 32px 0;
+          .distination {
+            font-weight: 600;
+            max-width: 343px;
+            margin: 0 auto;
+          }
+          address {
+            text-align: left;
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
         }
-        &__address{
-          margin: 8px 0 0;
+        .ic__main__container__info__inner__bottom {
+          margin: 0;
           font-size: 14px;
-          color: $default-font-black;
-        }
-        a{
-          display: block;
-          text-align: right;
-          color: $link-text-blue;
-          text-decoration: none;
-          font-size: 14px;
-        }
-        a:hover{
-          text-decoration: underline;
-          opacity: .7;
-        }
-      }
-    }
-    &__user-pay-info{
-      margin: 40px 0 0;
-      padding: 40px 12.5%;
-      border-top: 1px solid $global-back-color;
-      background-color: $normal-white;
-      &__inner{
-        max-width: 320px;
-        margin: 0 auto;
-        h3{
-          font-size: 14px;
-          font-weight: bold;
-          color: $default-font-black;
-        }
-        &__text{
-          margin: 8px 0 0;
-          font-size: 14px;
-          line-height: 1.4;
-          color: $default-font-black;
-        }
-        a{
-          display: block;
-          text-align: right;
-          color: $link-text-blue;
-          text-decoration: none;
-          font-size: 14px;
-        }
-        a:hover{
-          text-decoration: underline;
-          opacity: .7;
+          text-align: left;
+          border-top: 1px solid #f5f5f5;
+          padding: 32px 0;
+          .purchase {
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            -webkit-transition: all ease-out .3s;
+            transition: all ease-out .3s;
+            cursor: pointer;
+            text-align: center;
+            background: #3CCACE;
+            border: 1px solid #3CCACE;
+            color: #fff;
+          }
         }
       }
     }
   }
+
 }
