@@ -119,49 +119,66 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    # @item.images.new
+
+    # @parents = Category.all.order("id ASC").limit(13)
+    # @category_parent_array = ["選択してください"]  
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent_array << parent.name
+    # end
+    # if @item.save
+    #   redirect_to root_path
+    # else
+    #   render :new
+    # end
+    # @item.save && @item.images.save
     if @item.save
       redirect_to root_path
     else
-      render :new
+      @item = Item.new(item_params)
+      # @item.images.new
+      @category_parent_array = ["選択してください"]  
+      Category.where(ancestry: nil).each do |parent|
+        @category_parent_array << parent.name
+      end
+      render :new 
     end
   end
 
   def edit
     @item = Item.find(params[:id])
 
-    grandchild_category = @item.category
-    child_category = grandchild_category.parent
 
-    @category_parent_array = ["選択してください"]
+    @category_parent_array = []
+    # categoriesテーブルから親カテゴリーのみを抽出、配列に格納
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
 
-    @category_children_array = []
-    Category.where(ancestry: child_category.ancestry).each do |children|
-      @category_children_array << children
-    end
+    # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得
+    @category_child_array = @item.category.parent.parent.children
 
-    @category_grandchildren_array = []
-    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
-      @category_grandchildren_array << grandchildren
-    end
+    # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得
+    @category_grandchild_array = @item.category.parent.children
 
-    # @category_parent_array = ["選択してください"]  
+
+    # grandchild_category = @item.category
+    # child_category = grandchild_category.parent
+
+    # @category_parent_array = ["選択してください"]
     # Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent.name
-    #   # @category_parent_array = ["#{parent.name}"]
-    #   @category_child_array = ["選択してください"]  
-    #   Category.where(ancestry: parent).each do |child|
-    #     @category_child_array << child.name
-    #     @category_grandchild_array = ["選択してください"]  
-    #     Category.where(ancestry: child).each do |grandchild|
-    #       @category_grandchild_array << grandchild.name
-    #     end
-    #   end
     # end
-    
-    
+
+    # @category_children_array = []
+    # Category.where(ancestry: child_category.ancestry).each do |children|
+    #   @category_children_array << children
+    # end
+
+    # @category_grandchildren_array = []
+    # Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+    #   @category_grandchildren_array << grandchildren
+    # end
   end
 
   def update

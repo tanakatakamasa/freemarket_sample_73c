@@ -34,6 +34,9 @@
           カテゴリー 
           %span.required 必須
           = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          -# = f.select :category_id, @category_parent_array, {selected:@item.category.parent.parent.name}, { class: 'in__main__show__category', id: 'parent_category', name: ""}
+          -# = f.select :category, options_for_select(@category_parent_array.map{|c|[c, {}]}, @item.category.parent.parent.name), {}, {class: 'in__main__show__categoryForm', id: 'parent_category'}
+          -# = f.collection_select :category_ids, @parents, :id, :name,{prompt: "選択してください"}, class: "in__main__show__categoryForm", id: "parent-category", name: ''
 
         .in__main__show__condition
           商品の状態
