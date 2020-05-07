@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe Item do
   describe '#create' do
-
+  let(:user) {create(:user)}
+  let(:item) {build(:item, seller_id: user.id)}
     it "is valid with a name, price, discription, condition_id, burden_id, prefecture_id, duration_id, seller_id, category_id" do
-      item = FactoryBot.build(:item)
       expect(item).to be_valid
     end
 

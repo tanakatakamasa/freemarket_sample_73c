@@ -11,9 +11,11 @@ FactoryBot.define do
     burden_id         {1}
     prefecture_id     {1}
     duration_id       {1}
-    seller_id         {1}
     buyer_id          {1}
     category_id       {231}
+    after(:build) do |item|
+      item.images << build(:image)
+    end
   end
 
 end
