@@ -8,7 +8,7 @@ describe Address do
       address.valid?
       expect(address.errors[:last_name]).to include("を入力してください")
     end
-   
+
     it "is invalid without last_name_kana" do
       address = build(:address, last_name_kana: "")
       address.valid?
