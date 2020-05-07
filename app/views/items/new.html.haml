@@ -1,8 +1,10 @@
 .in
   = render partial: "partials/header"
   .in__main
-    = form_with model: @item do |f|
+
+    = form_with(model: @item, local:true) do |f|
       = render 'layouts/error_messages', model: f.object 
+
       .items_new-newimage
         .items_new-product__headline
           .items_new-product__headline--title 
@@ -17,8 +19,6 @@
                 = f.fields_for :images do |image|
                   .items_newt-js-file_group{"data-index" => "#{@item.images.index}"}
                     = image.file_field :item_image, class: 'items_new-js-file', style: "display:none"
-        
-
       .in__main__discription
         .in__main__discription__name
           商品名
