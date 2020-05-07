@@ -133,51 +133,6 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  # def create
-  #   @item = Item.new(item_params)
-
-  #   # カテゴリーの孫要素まで指定されていたらrender :new後もそのまま持ち越せる、子までの指定なら親から打ち直し
-  #   if @item.category_id.present?
-  #     # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得(必要)
-  #     @category_child_array = @item.category.parent.parent.children
-  #     # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得(必要)
-  #     @category_grandchild_array = @item.category.parent.children
-  #   end
-
-  #   if @item.save
-  #     redirect_to root_path
-  #   else
-
-  #     @item = Item.new(item_params)
-  #     # render :newをした時にカテゴリーの情報を引き継ぐ、または最初から選択させるために必要
-  #     if @item.category_id.present?
-  #       @category_parent_array = [@item.category.parent.parent.name]  
-  #       Category.where(ancestry: nil).each do |parent|
-  #         @category_parent_array << parent.name
-  #       end
-  #     else
-  #       @category_parent_array = []
-  #       Category.where(ancestry: nil).each do |parent|
-  #         @category_parent_array << parent.name
-  #       end
-  #     end
-  #     @item.images.new
-  #     render :new
-
-  #   end
-  # end
-
-  # def create
-  #   @item = Item.new(item_params)
-  #   if @item.valid?
-  #      @item.save!
-  #   else
-  #     render :new
-  #     redirect_to new_item_path
-  #   end
-  # end
-
-
 
   def edit
     @item = Item.find(params[:id])
@@ -201,20 +156,6 @@ class ItemsController < ApplicationController
     end
     
   end
-  # def edit
-  #   @item = Item.find(params[:id])
-
-  #   @category_parent_array = []
-  #   # categoriesテーブルから親カテゴリーのみを抽出、配列に格納
-  #   Category.where(ancestry: nil).each do |parent|
-  #     @category_parent_array << parent.name
-  #   end
-  #   # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得
-  #   @category_child_array = @item.category.parent.parent.children
-
-  #   # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得
-  #   @category_grandchild_array = @item.category.parent.children
-  # end
 
   def update
     @item = Item.find(params[:id])
