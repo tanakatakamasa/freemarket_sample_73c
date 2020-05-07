@@ -175,6 +175,18 @@ class ItemsController < ApplicationController
     if item.update(item_params)
       redirect_to root_path
     else
+      item = Item.find(params[:id])
+      if item.category_id.present?
+        @category_parent_array = [item.category.parent.parent.name]  
+        Category.where(ancestry: nil).each do |parent|
+          @category_parent_array << parent.name
+        end
+      else
+        @category_parent_array = []  
+        Category.where(ancestry: nil).each do |parent|
+          @category_parent_array << parent.name
+        end
+      end
       render :edit
     end
   end
