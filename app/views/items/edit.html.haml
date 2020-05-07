@@ -1,21 +1,31 @@
 .in
   = render partial: "partials/header"
   .in__main
-    = form_with model: @item do |f|
+    = form_with(model: @item, local:true) do |f|
       .items_new-newimage
         .items_new-product__headline
           .items_new-product__headline--title 
             出品画像
             %span.required 必須
         %p.items_new-product__explanation 最大5枚までアップロードできます
-        .items_new-image
-          .items_new-image-box
-            .items_new-content
-            .items_new-uploader-box
-              %label.items_new-uploader__label 
-                = f.fields_for :images do |image|
-                  .items_newt-js-file_group{"data-index" => "#{@item.images.index}"}
-                    = image.file_field :item_image, class: 'items_new-js-file', style: "display:none"
+        .items_edit-image
+          .items_edit-image-box
+            .items_edit-content
+              - if @item.persisted?
+                - @item.images.each_with_index do |image, i|
+                  .items_edit-preview-box{"data-index" => "#{i}"}
+                    .items_edit-upper-box
+                      = image_tag image.item_image.url, width: "100", height: "100", alt: "preview", class: "items_edit-input_images"
+                      .items_edit-js-remove
+                        削除
+              = f.fields_for :images do |image|
+                - if @item.persisted?
+                  = image.check_box :_destroy, class: "delete-check-box-#{image.index}", style:"display:none;"
+            .items_edit-lower-box
+              %label.items_edit-lower-box__label
+                .items_edit-js-file_group{"data-index" => "#{@item.images.count}"}
+                  = f.file_field :item_image, name: "item[images_attributes][#{@item.images.count}][item_image]", id: "items_images_attributes_#{@item.images.count}_item_image", class: 'items_edit-js-file', style: "display:none"
+
 
       .in__main__discription
         .in__main__discription__name
