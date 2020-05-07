@@ -94,7 +94,7 @@ class ItemsController < ApplicationController
     # akama/itemモデルに紐づくimageモデルのインスタンス生成
     @item.images.new
 
-    @category_parent_array = []  
+    @category_parent_array = ["選択してください"]  
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
@@ -121,40 +121,51 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def create
     @item = Item.new(item_params)
-
-    # カテゴリーの孫要素まで指定されていたらrender :new後もそのまま持ち越せる、子までの指定なら親から打ち直し
-    if @item.category_id.present?
-      # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得(必要)
-      @category_child_array = @item.category.parent.parent.children
-      # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得(必要)
-      @category_grandchild_array = @item.category.parent.children
+    @category_parent_array = ["選択してください"]  
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
     end
-
     if @item.save
       redirect_to root_path
     else
-
-      @item = Item.new(item_params)
-      # render :newをした時にカテゴリーの情報を引き継ぐ、または最初から選択させるために必要
-      if @item.category_id.present?
-        @category_parent_array = [@item.category.parent.parent.name]  
-        Category.where(ancestry: nil).each do |parent|
-          @category_parent_array << parent.name
-        end
-      else
-        @category_parent_array = []
-        Category.where(ancestry: nil).each do |parent|
-          @category_parent_array << parent.name
-        end
-      end
-      @item.images.new
       render :new
-
     end
   end
+  # def create
+  #   @item = Item.new(item_params)
+
+  #   # カテゴリーの孫要素まで指定されていたらrender :new後もそのまま持ち越せる、子までの指定なら親から打ち直し
+  #   if @item.category_id.present?
+  #     # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得(必要)
+  #     @category_child_array = @item.category.parent.parent.children
+  #     # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得(必要)
+  #     @category_grandchild_array = @item.category.parent.children
+  #   end
+
+  #   if @item.save
+  #     redirect_to root_path
+  #   else
+
+  #     @item = Item.new(item_params)
+  #     # render :newをした時にカテゴリーの情報を引き継ぐ、または最初から選択させるために必要
+  #     if @item.category_id.present?
+  #       @category_parent_array = [@item.category.parent.parent.name]  
+  #       Category.where(ancestry: nil).each do |parent|
+  #         @category_parent_array << parent.name
+  #       end
+  #     else
+  #       @category_parent_array = []
+  #       Category.where(ancestry: nil).each do |parent|
+  #         @category_parent_array << parent.name
+  #       end
+  #     end
+  #     @item.images.new
+  #     render :new
+
+  #   end
+  # end
 
   # def create
   #   @item = Item.new(item_params)
@@ -168,27 +179,65 @@ class ItemsController < ApplicationController
 
 
 
-
   def edit
     @item = Item.find(params[:id])
 
-    @category_parent_array = []
-    # categoriesテーブルから親カテゴリーのみを抽出、配列に格納
+    @grandchild_category = @item.category
+    @child_category = @grandchild_category.parent
+
+    @category_parent_array = ["選択してください"]
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
 
-    # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得
-    @category_child_array = @item.category.parent.parent.children
+    @category_children_array = []
+    Category.where(ancestry: @child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
 
-    # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得
-    @category_grandchild_array = @item.category.parent.children
+    @category_grandchildren_array = []
+    Category.where(ancestry: @grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
+    
   end
+  # def edit
+  #   @item = Item.find(params[:id])
+
+  #   @category_parent_array = []
+  #   # categoriesテーブルから親カテゴリーのみを抽出、配列に格納
+  #   Category.where(ancestry: nil).each do |parent|
+  #     @category_parent_array << parent.name
+  #   end
+  #   # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得
+  #   @category_child_array = @item.category.parent.parent.children
+
+  #   # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得
+  #   @category_grandchild_array = @item.category.parent.children
+  # end
 
   def update
-    item = Item.find(params[:id])
-    # binding.pry
-    if item.update(item_params)
+    @item = Item.find(params[:id])
+    
+    grandchild_category = @item.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
+
+    if @item.update(item_params)
       redirect_to root_path
     else
       item = Item.find(params[:id])
@@ -206,14 +255,6 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
-  # def create
-  #   @item = Item.new(item_params)
-  #   @category_parent_array = ["選択してください"]  
-  #   Category.where(ancestry: nil).each do |parent|
-  #     @category_parent_array << parent.name
-  #   end
-
 
   private
 
