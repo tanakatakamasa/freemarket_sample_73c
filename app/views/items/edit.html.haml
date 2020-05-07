@@ -1,21 +1,32 @@
 .in
   = render partial: "partials/header"
   .in__main
-    = form_with model: @item do |f|
+    = form_with(model: @item, local:true) do |f|
+      = render 'layouts/error_messages', model: f.object
       .items_new-newimage
         .items_new-product__headline
           .items_new-product__headline--title 
             出品画像
             %span.required 必須
         %p.items_new-product__explanation 最大5枚までアップロードできます
-        .items_new-image
-          .items_new-image-box
-            .items_new-content
-            .items_new-uploader-box
-              %label.items_new-uploader__label 
-                = f.fields_for :images do |image|
-                  .items_newt-js-file_group{"data-index" => "#{@item.images.index}"}
-                    = image.file_field :item_image, class: 'items_new-js-file', style: "display:none"
+        .items_edit-image
+          .items_edit-image-box
+            .items_edit-content
+              - if @item.persisted?
+                - @item.images.each_with_index do |image, i|
+                  .items_edit-preview-box{"data-index" => "#{i}"}
+                    .items_edit-upper-box
+                      = image_tag image.item_image.url, width: "100", height: "100", alt: "preview", class: "items_edit-input_images"
+                      .items_edit-js-remove
+                        削除
+              = f.fields_for :images do |image|
+                - if @item.persisted?
+                  = image.check_box :_destroy, class: "delete-check-box-#{image.index}", style:"display:none;"
+            .items_edit-lower-box
+              %label.items_edit-lower-box__label
+                .items_edit-js-file_group{"data-index" => "#{@item.images.count}"}
+                  = f.file_field :item_image, name: "item[images_attributes][#{@item.images.count}][item_image]", id: "items_images_attributes_#{@item.images.count}_item_image", class: 'items_edit-js-file', style: "display:none"
+
 
       .in__main__discription
         .in__main__discription__name
@@ -32,12 +43,12 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-          = f.select :parent_name, @category_parent_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
-          = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'child_category'}
-          = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
-          -# = f.select :category_id, @category_children_array,{selected: @item.category.parent.children.name},{ class: "in__main__show__categoryForm", id: 'child_category'}
-          -# = f.select :category_id, @category_grandchildren_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
-
+          -# 親のセレクトボックス
+          = f.select :category, options_for_select(@category_parent_array.map{|c|[c, {}]}, @item.category.parent.parent.name), {}, {class: 'in__main__show__categoryForm', id: 'parent_category', name: ''}
+          -# 子のセレクトボックス
+          = f.select :category, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.id), {}, {class: 'in__main__show__categoryForm', id: 'child_category', name: ''}
+          -# 孫のセレクトボックス
+          = f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.id), {}, {class: 'in__main__show__categoryForm', id: 'grandchild_category'}
 
         .in__main__show__condition
           商品の状態
@@ -68,26 +79,8 @@
           .in__main__price__group__right
             .in__main__price__group__right__icon ¥
             = f.number_field :price, min: 300, max: 9999999, class: "in__main__price__group__right__form", placeholder: "0"
-        .in__main__price__group2
-          .in__main__price__group2__feeTitle 販売手数料(10%) 
-          .in__main__price__group2__fee ー
-        .in__main__price__group
-          .in__main__price__group__profitTitle 販売利益
-          .in__main__price__group__profit ー
       .in__main__btn
         = f.submit "更新する", class: "in__main__btn__exhibit"
         = link_to "もどる", root_path, class: "in__main__btn__back"
-      .in__main__caution
-        禁止されている
-        = link_to "行為","https://www.mercari.com/jp/help_center/getting_started/prohibited_conduct/", class: "in__main__caution__link"
-        および
-        = link_to "出品物","https://www.mercari.com/jp/help_center/getting_started/prohibited_items/", class: "in__main__caution__link"
-        を必ずご確認ください。
-        = link_to "偽ブランド", "https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/", class: "in__main__caution__link"
-        や
-        = link_to "盗品物", "https://www.mercari.com/jp/help_center/getting_started/report_counterfeit_goods/", class: "in__main__caution__link"
-        などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして
-        = link_to "加盟店規約", "https://www.mercari.com/jp/seller_terms/", class: "in__main__caution__link"
-        に同意したことになります。
 
   = render partial: "partials/footer"

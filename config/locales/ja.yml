@@ -227,4 +227,15 @@ ja:
         prefecture_id: 都道府県
         city: 市区町村
         street: 番地 
-
+    attributes:
+      item: 
+        images: 画像
+        name: 商品名
+        price: 販売価格
+        discription: 商品の説明
+        category_id: カテゴリー
+        condition_id: 商品の状態 
+        burden_id: 配送料の負担
+        prefecture_id: 発送元の地域
+        duration_id: 発送までの日数
+        

@@ -15,6 +15,9 @@
  @import "partials/footer";
  @import "partials/mypage_side";
 
+// layouts
+ @import "layouts/error_messages";
+
 // Main
  @import "items/index";
  @import "items/new";
