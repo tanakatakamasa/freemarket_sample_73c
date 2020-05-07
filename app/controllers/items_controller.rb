@@ -150,6 +150,7 @@ class ItemsController < ApplicationController
           @category_parent_array << parent.name
         end
       end
+      @item.images.new
       render :new
 
     end
