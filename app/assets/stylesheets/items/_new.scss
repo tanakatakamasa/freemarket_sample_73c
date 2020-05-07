@@ -17,7 +17,7 @@
   overflow: scroll;
   &__main {
     width: 649px;
-    margin: auto;
+    margin: 40px auto;
     background-color: white;
     &__discription {
       @include in-block;
