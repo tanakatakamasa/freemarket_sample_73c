@@ -34,7 +34,11 @@
         .in__main__show__category
           カテゴリー 
           %span.required 必須
-          = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          = f.select :category_id, @category_parent_array,{prompt: "選択してください"},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
+          -# 初期newアクション時は関係無し、カテゴリー項目以外の不足があった場合の表示
+          - if  @category_grandchild_array.present?
+            = f.select :category, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.parent.id), {}, {class: 'in__main__show__categoryForm', id: 'child_category'}
+            = f.select :category, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @item.category.id), {}, {class: 'in__main__show__categoryForm', id: 'grandchild_category'}
 
         .in__main__show__condition
           商品の状態

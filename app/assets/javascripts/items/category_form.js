@@ -8,7 +8,7 @@ $(function(){
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<select class="in__main__show__categoryForm" id="child_category" name="">
-                        <option value="選択してください" data-category="選択してください">選択してください</option>
+                        <option value="" data-category="">選択してください</option>
                         ${insertHTML}
                       </select>`;
     $('.in__main__show__category').append(childSelectHtml);
@@ -17,7 +17,7 @@ $(function(){
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<select class="in__main__show__categoryForm" id="grandchild_category" name="item[category_id]">
-                              <option value="選択してください" data-category="選択してください">選択してください</option>
+                              <option value="" data-category="">選択してください</option>
                               ${insertHTML}
                             </select>`;
     $('.in__main__show__category').append(grandchildSelectHtml);
@@ -27,7 +27,7 @@ $(function(){
     var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
     if (parentCategory != "選択してください"){ //親カテゴリーが初期値でないことを確認
       $.ajax({
-        url: 'get_category_children',
+        url: '/items/get_category_children',
         type: 'GET',
         data: { parent_name: parentCategory },
         dataType: 'json'
@@ -54,7 +54,7 @@ $(function(){
     var childId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
     if (childId != "選択してください"){ //子カテゴリーが初期値でないことを確認
       $.ajax({
-        url: 'get_category_grandchildren',
+        url: '/items/get_category_grandchildren',
         type: 'GET',
         data: { child_id: childId },
         dataType: 'json'
