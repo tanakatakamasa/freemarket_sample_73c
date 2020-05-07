@@ -136,6 +136,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+
       @item = Item.new(item_params)
       # render :newをした時にカテゴリーの情報を引き継ぐ、または最初から選択させるために必要
       if @item.category_id.present?
@@ -150,8 +151,22 @@ class ItemsController < ApplicationController
         end
       end
       render :new
+
     end
   end
+
+  # def create
+  #   @item = Item.new(item_params)
+  #   if @item.valid?
+  #      @item.save!
+  #   else
+  #     render :new
+  #     redirect_to new_item_path
+  #   end
+  # end
+
+
+
 
   def edit
     @item = Item.find(params[:id])

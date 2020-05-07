@@ -1,15 +1,22 @@
 FactoryBot.define do
 
-  factory :item do
-
-    name           {"t-shirt"}
-    price          {"1,000"}
-    discription    {"high quality"}
-    category_id    {"1"}
-    condition_id   {"1"}
-    burden_id      {"1"}
-    prefecture_id  {"1"}
-    duration_id    {"1"}
-
+  factory :category do
+    name                  {"タンクトップ"}
   end
+
+  factory :item do  
+    name              {"tomato"}
+    price             {800}
+    discription       {"aaa"}
+    condition_id      {1}
+    burden_id         {1}
+    prefecture_id     {1}
+    duration_id       {1}
+    buyer_id          {1}
+    category_id       {231}
+    after(:build) do |item|
+      item.images << build(:image)
+    end
+  end
+
 end
