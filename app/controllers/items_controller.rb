@@ -160,7 +160,6 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    # binding.pry
     grandchild_category = @item.category
     child_category = grandchild_category.parent
 
