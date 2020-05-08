@@ -47,6 +47,8 @@
             = f.select :parent_id, @category_parent_array,{selected: @item.category.parent.parent.name},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
             = f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'child_category', name: ""}
             = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}),{},{ class: "in__main__show__categoryForm", id: 'grandchild_category'}
+          - else
+            = f.select :category_id, @category_parent_array,{},{ class: "in__main__show__categoryForm", id: 'parent_category', name: ""}
 
         .in__main__show__condition
           商品の状態
