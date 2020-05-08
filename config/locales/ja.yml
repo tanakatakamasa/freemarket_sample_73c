@@ -227,7 +227,6 @@ ja:
         prefecture_id: 都道府県
         city: 市区町村
         street: 番地 
-    attributes:
       item: 
         images: 画像
         name: 商品名
