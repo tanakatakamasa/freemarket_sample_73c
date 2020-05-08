@@ -156,19 +156,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def create
-  #   @item = Item.new(item_params)
-  #   if @item.valid?
-  #      @item.save!
-  #   else
-  #     render :new
-  #     redirect_to new_item_path
-  #   end
-  # end
-
-
-
-
   def edit
     @item = Item.find(params[:id])
 
@@ -186,34 +173,33 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    # binding.pry
-    if item.update(item_params)
+
+    @item = Item.find(params[:id])
+    
+    grandchild_category = @item.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
+
+    if @item.update(item_params)
       redirect_to root_path
     else
-      item = Item.find(params[:id])
-      if item.category_id.present?
-        @category_parent_array = [item.category.parent.parent.name]  
-        Category.where(ancestry: nil).each do |parent|
-          @category_parent_array << parent.name
-        end
-      else
-        @category_parent_array = []  
-        Category.where(ancestry: nil).each do |parent|
-          @category_parent_array << parent.name
-        end
-      end
       render :edit
     end
   end
-
-  # def create
-  #   @item = Item.new(item_params)
-  #   @category_parent_array = ["選択してください"]  
-  #   Category.where(ancestry: nil).each do |parent|
-  #     @category_parent_array << parent.name
-  #   end
-
 
   private
 
