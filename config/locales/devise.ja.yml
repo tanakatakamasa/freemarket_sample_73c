@@ -17,6 +17,16 @@ ja:
         locked_at: ロック時刻
         password: パスワード
         password_confirmation: パスワード（確認用）
+        name: 名前
+        nickname: ニックネーム
+        last_name: 苗字
+        last_name_kana: 苗字（カナ）
+        first_name: 名前
+        first_name_kana: 名前（カナ）
+        password: パスワード
+        password_confirmation: パスワード確認
+        email: メールアドレス
+        birthday: 生年月日
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻
