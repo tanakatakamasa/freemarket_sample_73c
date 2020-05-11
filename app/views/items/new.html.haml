@@ -69,12 +69,6 @@
           .in__main__price__group__right
             .in__main__price__group__right__icon ¥
             = f.number_field :price, min: 300, max: 9999999, class: "in__main__price__group__right__form", placeholder: "0"
-        .in__main__price__group2
-          .in__main__price__group2__feeTitle 販売手数料(10%) 
-          .in__main__price__group2__fee ー
-        .in__main__price__group
-          .in__main__price__group__profitTitle 販売利益
-          .in__main__price__group__profit ー
       .in__main__btn
         = f.submit "出品する", class: "in__main__btn__exhibit"
         = link_to "もどる", root_path, class: "in__main__btn__back"
